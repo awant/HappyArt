@@ -8,10 +8,11 @@
 
 import UIKit
 
-class DrawVC: UIViewController {
+class DrawVC: UIViewController, ImageSaving {
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var drawView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,7 +23,17 @@ class DrawVC: UIViewController {
 
     @IBAction func saveImage(sender: UIButton) {
         let imageSaveVC: ImageSaveVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageSaveVC") as! ImageSaveVC
+        imageSaveVC.delegate = self
         self.navigationController?.pushViewController(imageSaveVC, animated: true)
+    }
+    
+    func takeImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.drawView.frame.size)
+        self.drawView.drawRect(self.drawView.frame)
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
     }
 
 }
