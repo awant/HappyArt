@@ -14,7 +14,10 @@ enum MainTool
     case Line
 }
 
+let multipleForBrush = 10
+
 class Tool {
+    
     var mainTool: MainTool
     var color: UIColor
     var size: CGFloat
@@ -29,7 +32,7 @@ class Tool {
         color = UIColor.blackColor()
         start = CGPoint(x: 0, y: 0)
         end = CGPoint(x: 0, y: 0)
-        mainTool = .Brush
+        mainTool = .Line
         isDrawing = false
         size = 3
     }
@@ -38,6 +41,10 @@ class Tool {
     {
         switch mainTool {
         case .Brush:
+            path.addLineToPoint(end)
+        case .Line:
+            path.removeAllPoints()
+            path.moveToPoint(start)
             path.addLineToPoint(end)
         default:
             println("I hate swift")

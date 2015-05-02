@@ -10,12 +10,9 @@
 
 import UIKit
 
-class drawRect: UIView {
-    let cNumber = 5
+class DrawRect: UIView {
     
-    var lastPoint: CGPoint!
-    var mainBezier = UIBezierPath()
-    var bezierArray: [UIBezierPath] = []
+    var bezierBuffer: [CustomBezier] = []
     var tool: Tool
     var isFirstCall: Bool
     
@@ -33,16 +30,26 @@ class drawRect: UIView {
             isFirstCall = false
             return
         }
-        UIColor.blackColor().setStroke()
-        mainBezier.lineWidth = tool.size
-        
-        mainBezier.stroke()
-        println("bezierArray.count = \(bezierArray.count)")
-        for bezier in bezierArray
+        // Draw bezierBuffer
+        for bezier in bezierBuffer
         {
-            bezier.lineWidth = tool.size
-            bezier.stroke()
+            bezier.color.setStroke()
+            bezier.bezier.stroke()
         }
+    }
+    
+    func removeLast()
+    {
+        if bezierBuffer.count > 0
+        {
+            bezierBuffer.removeLast()
+            self.setNeedsDisplay()
+        }
+    }
+    
+    func removeAll()
+    {
+        bezierBuffer.removeAll()
     }
     
     func setupGestures()
@@ -51,71 +58,45 @@ class drawRect: UIView {
         self.addGestureRecognizer(pan)
     }
     
-    func startedDrawing(pointInView: CGPoint)
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
     {
-        tool.start = pointInView
-        if bezierArray.count == cNumber
+        tool.start = (touches.first as! UITouch).locationInView(self)
+        bezierBuffer.append(CustomBezier())
+        bezierBuffer.last?.bezier.lineWidth = tool.size
+        bezierBuffer.last?.color = tool.color
+        bezierBuffer.last?.bezier.moveToPoint(tool.start)
+    }
+    
+    func pan(panGesture: UIPanGestureRecognizer)
+    {
+        var pointInView = panGesture.locationInView(self)
+        if panGesture.state == UIGestureRecognizerState.Changed
         {
-            mainBezier.appendPath(bezierArray[0])
-            bezierArray.removeAtIndex(0)
+            drawing(pointInView)
         }
-        bezierArray.append(UIBezierPath())
-        bezierArray.last?.moveToPoint(tool.start)
-        self.setNeedsDisplay()
+        else if panGesture.state == UIGestureRecognizerState.Ended
+        {
+            tool.isDrawing = false
+        }
     }
     
     func drawing(pointInView: CGPoint)
     {
         tool.end = pointInView
-        tool.changeLastBezier(bezierArray.last!)
+        tool.changeLastBezier(bezierBuffer.last!.bezier)
         tool.isDrawing = true
         self.setNeedsDisplay()
     }
     
-    func endedDrawing(pointInView: CGPoint)
-    {
-        
-    }
-    
-    func removeLast()
-    {
-        if bezierArray.count > 0
-        {
-            bezierArray.removeLast()
-        }
-    }
-    
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
-    {
-        println("touchesBegan")
-        var pointInView = (touches.first as! UITouch).locationInView(self)
-        startedDrawing(pointInView)
-    }
-    
-    func pan(panGesture: UIPanGestureRecognizer)
-    {
-        println("pan")
-        var pointInView = panGesture.locationInView(self)
-        if panGesture.state == UIGestureRecognizerState.Changed
-        {
-            println("Changed")
-            drawing(pointInView)
-        }
-        else if panGesture.state == UIGestureRecognizerState.Began
-        {
-            println("Began")
-            drawing(pointInView)
-            if (isFirstCall || tool.isDrawing == false)
-            {
-                drawing(pointInView)
-            }
-        }
-        else if panGesture.state == UIGestureRecognizerState.Ended
-        {
-            println("ended")
-            tool.end = pointInView
-            tool.isDrawing = false
-        }
-    }
     
 }
+
+
+
+
+
+
+
+
+
+

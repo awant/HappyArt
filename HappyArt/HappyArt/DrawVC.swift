@@ -10,7 +10,8 @@ import UIKit
 
 class DrawVC: UIViewController, ImageSaving {
 
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var drawRect: DrawRect!
+    @IBOutlet weak var sizeOfBrush: UISlider!
     
     @IBOutlet weak var drawView: UIView!
     override func viewDidLoad() {
@@ -35,7 +36,17 @@ class DrawVC: UIViewController, ImageSaving {
         
         return image
     }
-
+    
+    @IBAction func cancelAction(sender: AnyObject)
+    {
+        drawRect.removeLast()
+    }
+    
+    @IBAction func changedSizeOfBrush(sender: AnyObject)
+    {
+        println("\(sizeOfBrush.value)")
+        drawRect.tool.size = CGFloat(multipleForBrush) * CGFloat(sizeOfBrush.value)
+    }
 
 }
 

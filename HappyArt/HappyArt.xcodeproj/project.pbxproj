@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		84D40C751AF51FCA007357B7 /* drawRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D40C741AF51FCA007357B7 /* drawRect.swift */; };
 		84D40C791AF523BA007357B7 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D40C781AF523BA007357B7 /* Tool.swift */; };
+		84D40C811AF583CD007357B7 /* CustomBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D40C801AF583CD007357B7 /* CustomBezier.swift */; };
 		F936D3591AF2818A0034C998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936D3581AF2818A0034C998 /* AppDelegate.swift */; };
 		F936D35B1AF2818A0034C998 /* DrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936D35A1AF2818A0034C998 /* DrawVC.swift */; };
 		F936D35E1AF2818A0034C998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F936D35C1AF2818A0034C998 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		84D40C741AF51FCA007357B7 /* drawRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawRect.swift; sourceTree = "<group>"; };
 		84D40C781AF523BA007357B7 /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		84D40C801AF583CD007357B7 /* CustomBezier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBezier.swift; sourceTree = "<group>"; };
 		F936D3531AF2818A0034C998 /* HappyArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F936D3571AF2818A0034C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F936D3581AF2818A0034C998 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				84D40C781AF523BA007357B7 /* Tool.swift */,
+				84D40C801AF583CD007357B7 /* CustomBezier.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D40C811AF583CD007357B7 /* CustomBezier.swift in Sources */,
 				F936D35B1AF2818A0034C998 /* DrawVC.swift in Sources */,
 				F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */,
 				F936D3591AF2818A0034C998 /* AppDelegate.swift in Sources */,
