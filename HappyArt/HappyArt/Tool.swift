@@ -34,6 +34,16 @@ class Tool {
         size = 3
     }
     
+    func changeLastBezier(path: UIBezierPath)
+    {
+        switch mainTool {
+        case .Brush:
+            path.addLineToPoint(end)
+        default:
+            println("I hate swift")
+        }
+    }
+    
     func addLine(path: UIBezierPath) -> UIBezierPath
     {
         path.moveToPoint(start)
@@ -41,3 +51,4 @@ class Tool {
         return path
     }
 }
+

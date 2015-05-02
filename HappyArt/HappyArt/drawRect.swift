@@ -15,11 +15,8 @@ class drawRect: UIView {
     
     var lastPoint: CGPoint!
     var mainBezier = UIBezierPath()
-    
     var bezierArray: [UIBezierPath] = []
-    
     var tool: Tool
-    
     var isFirstCall: Bool
     
     required init(coder aDecoder: NSCoder)
@@ -38,40 +35,39 @@ class drawRect: UIView {
         }
         UIColor.blackColor().setStroke()
         mainBezier.lineWidth = tool.size
-        if tool.isDrawing == false
-        {
-            mainBezier.moveToPoint(tool.start)
-        }
-        else
-        {
-            mainBezier.addLineToPoint(tool.end)
-        }
+        
         mainBezier.stroke()
+        println("bezierArray.count = \(bezierArray.count)")
+        for bezier in bezierArray
+        {
+            bezier.lineWidth = tool.size
+            bezier.stroke()
+        }
     }
     
     func setupGestures()
     {
         var pan = UIPanGestureRecognizer(target: self, action: Selector("pan:"))
         self.addGestureRecognizer(pan)
-        var tap = UITapGestureRecognizer(target: self, action: Selector("tap:"))
-        self.addGestureRecognizer(tap)
     }
     
     func startedDrawing(pointInView: CGPoint)
     {
+        tool.start = pointInView
         if bezierArray.count == cNumber
         {
             mainBezier.appendPath(bezierArray[0])
             bezierArray.removeAtIndex(0)
         }
         bezierArray.append(UIBezierPath())
-        tool.start = pointInView
+        bezierArray.last?.moveToPoint(tool.start)
+        self.setNeedsDisplay()
     }
     
     func drawing(pointInView: CGPoint)
     {
-        
         tool.end = pointInView
+        tool.changeLastBezier(bezierArray.last!)
         tool.isDrawing = true
         self.setNeedsDisplay()
     }
@@ -81,35 +77,43 @@ class drawRect: UIView {
         
     }
     
-    func tap(tapGesture: UITapGestureRecognizer)
+    func removeLast()
     {
-        println("tap")
-        var pointInView = tapGesture.locationInView(self)
+        if bezierArray.count > 0
+        {
+            bezierArray.removeLast()
+        }
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+    {
+        println("touchesBegan")
+        var pointInView = (touches.first as! UITouch).locationInView(self)
         startedDrawing(pointInView)
-        self.setNeedsDisplay()
     }
     
     func pan(panGesture: UIPanGestureRecognizer)
     {
+        println("pan")
         var pointInView = panGesture.locationInView(self)
         if panGesture.state == UIGestureRecognizerState.Changed
         {
-            tool.end = pointInView
-            tool.isDrawing = true
-            self.setNeedsDisplay()
+            println("Changed")
+            drawing(pointInView)
         }
         else if panGesture.state == UIGestureRecognizerState.Began
         {
+            println("Began")
+            drawing(pointInView)
             if (isFirstCall || tool.isDrawing == false)
             {
-                startedDrawing(pointInView)
-                self.setNeedsDisplay()
+                drawing(pointInView)
             }
         }
         else if panGesture.state == UIGestureRecognizerState.Ended
         {
-            //tool.end = pointInView
             println("ended")
+            tool.end = pointInView
             tool.isDrawing = false
         }
     }
