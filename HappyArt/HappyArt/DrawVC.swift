@@ -29,8 +29,13 @@ class DrawVC: UIViewController, ImageSaving {
     }
     
     func takeImage() -> UIImage {
-        UIGraphicsBeginImageContext(self.drawView.frame.size)
+      /*  UIGraphicsBeginImageContext(self.drawView.frame.size)
         self.drawView.drawRect(self.drawView.frame)
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()*/
+        
+        UIGraphicsBeginImageContext(self.drawView.bounds.size)
+        self.drawView.layer.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
