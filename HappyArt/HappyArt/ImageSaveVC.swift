@@ -29,6 +29,6 @@ class ImageSaveVC: UIViewController {
         let imageData = NSData(data: UIImagePNGRepresentation(delegate?.takeImage()))
         if let newImageName = imageName.text {
             imageData.writeToFile(newImageName.stringByAppendingString(".png"), atomically: true)
-        }
+        } // else
     }
 }

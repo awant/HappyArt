@@ -23,7 +23,7 @@ class DrawVC: UIViewController, ImageSaving {
 
     @IBAction func saveImage(sender: UIButton) {
         let imageSaveVC: ImageSaveVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageSaveVC") as! ImageSaveVC
-        imageSaveVC.delegate = self
+        imageSaveVC.delegate = self // set
         self.navigationController?.pushViewController(imageSaveVC, animated: true)
     }
     
