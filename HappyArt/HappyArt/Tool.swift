@@ -8,8 +8,8 @@
 
 import UIKit
 
-let multipleForBrush = 10
-let minForBrush = 0.1
+let multipleForBrush = CGFloat(10)
+let minSizeForBrush = CGFloat(0.1)
 
 enum MainTool
 {

@@ -49,8 +49,7 @@ class DrawVC: UIViewController, ImageSaving {
     
     @IBAction func changedSizeOfBrush(sender: AnyObject)
     {
-        println("\(sizeOfBrush.value)")
-        drawRect.tool.size = CGFloat(multipleForBrush) * CGFloat(sizeOfBrush.value)
+        drawRect.tool.size = multipleForBrush * CGFloat(sizeOfBrush.value) + minSizeForBrush
     }
 
     func imageSaved(imageName: NSString) {
