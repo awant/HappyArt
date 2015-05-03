@@ -67,6 +67,13 @@ class DrawRect: UIView {
         bezierBuffer.last?.bezier.moveToPoint(tool.start)
     }
     
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        tool.end = (touches.first as! UITouch).locationInView(self)
+        tool.setPoint(bezierBuffer.last!)
+        tool.isDrawing = false
+        self.setNeedsDisplay()
+    }
+    
     func pan(panGesture: UIPanGestureRecognizer)
     {
         var pointInView = panGesture.locationInView(self)
@@ -87,7 +94,6 @@ class DrawRect: UIView {
         tool.isDrawing = true
         self.setNeedsDisplay()
     }
-    
     
 }
 

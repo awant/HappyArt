@@ -65,6 +65,16 @@ class Tool {
         }
     }
     
+    func setPoint(pathCustom: CustomBezier)
+    {
+        var path = pathCustom.bezier
+        if (abs(end.x - start.x) < size) || (abs(end.y - start.y) < size)
+        {
+            end = CGPoint(x: start.x, y: start.y+size)
+        }
+        path.addLineToPoint(end)
+    }
+    
     func addLine(path: UIBezierPath) -> UIBezierPath
     {
         path.moveToPoint(start)
