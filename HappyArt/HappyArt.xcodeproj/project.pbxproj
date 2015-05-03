@@ -16,7 +16,6 @@
 		F936D3601AF2818A0034C998 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F936D35F1AF2818A0034C998 /* Images.xcassets */; };
 		F936D3631AF2818A0034C998 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F936D3611AF2818A0034C998 /* LaunchScreen.xib */; };
 		F936D36F1AF2818A0034C998 /* HappyArtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936D36E1AF2818A0034C998 /* HappyArtTests.swift */; };
-		F9A6379B1AF6BBDC00BE59C2 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A6379A1AF6BBDC00BE59C2 /* ColorPicker.swift */; };
 		F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */; };
 		F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */; };
 		F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */; };
@@ -46,7 +45,6 @@
 		F936D3681AF2818A0034C998 /* HappyArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F936D36D1AF2818A0034C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F936D36E1AF2818A0034C998 /* HappyArtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyArtTests.swift; sourceTree = "<group>"; };
-		F9A6379A1AF6BBDC00BE59C2 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputVC.swift; sourceTree = "<group>"; };
 		F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageOpenVC.swift; sourceTree = "<group>"; };
 		F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaveVC.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			children = (
 				F936D35C1AF2818A0034C998 /* Main.storyboard */,
 				84D40C741AF51FCA007357B7 /* drawRect.swift */,
-				F9A6379A1AF6BBDC00BE59C2 /* ColorPicker.swift */,
 				84E16ABF1AF5046F00DE5647 /* VCs */,
 				84E16AC01AF5048E00DE5647 /* Models */,
 				F936D35F1AF2818A0034C998 /* Images.xcassets */,
@@ -254,7 +251,6 @@
 				F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */,
 				F936D3591AF2818A0034C998 /* AppDelegate.swift in Sources */,
 				84D40C791AF523BA007357B7 /* Tool.swift in Sources */,
-				F9A6379B1AF6BBDC00BE59C2 /* ColorPicker.swift in Sources */,
 				84D40C751AF51FCA007357B7 /* drawRect.swift in Sources */,
 				F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */,
 				F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */,
