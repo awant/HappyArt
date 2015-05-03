@@ -8,13 +8,17 @@
 
 import UIKit
 
+let multipleForBrush = 10
+let minForBrush = 0.1
+
 enum MainTool
 {
     case Brush
     case Line
+    case Rect
+    case Oval
+    case Rubber
 }
-
-let multipleForBrush = 10
 
 class Tool {
     
@@ -32,13 +36,14 @@ class Tool {
         color = UIColor.blackColor()
         start = CGPoint(x: 0, y: 0)
         end = CGPoint(x: 0, y: 0)
-        mainTool = .Line
+        mainTool = .Oval
         isDrawing = false
-        size = 3
+        size = defaultLineWidth
     }
     
-    func changeLastBezier(path: UIBezierPath)
+    func changeLastBezier(pathCustom: CustomBezier)
     {
+        var path = pathCustom.bezier
         switch mainTool {
         case .Brush:
             path.addLineToPoint(end)
@@ -46,8 +51,17 @@ class Tool {
             path.removeAllPoints()
             path.moveToPoint(start)
             path.addLineToPoint(end)
+        case .Rect:
+            path.removeAllPoints()
+            path.appendPath(UIBezierPath(rect: CGRect(origin: start, size: CGSize(width: end.x - start.x, height: end.y - start.y))))
+        case .Oval:
+            path.removeAllPoints()
+            path.appendPath(UIBezierPath(ovalInRect: CGRect(origin: start, size: CGSize(width: end.x - start.x, height: end.y - start.y))))
+        case .Rubber:
+            pathCustom.color = UIColor.whiteColor()
+            path.addLineToPoint(end)
         default:
-            println("I hate swift")
+            println("I hate swift because of 'default' things")
         }
     }
     

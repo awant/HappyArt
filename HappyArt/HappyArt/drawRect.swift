@@ -83,7 +83,7 @@ class DrawRect: UIView {
     func drawing(pointInView: CGPoint)
     {
         tool.end = pointInView
-        tool.changeLastBezier(bezierBuffer.last!.bezier)
+        tool.changeLastBezier(bezierBuffer.last!)
         tool.isDrawing = true
         self.setNeedsDisplay()
     }
