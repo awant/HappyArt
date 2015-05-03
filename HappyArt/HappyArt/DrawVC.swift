@@ -140,6 +140,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func cancelAll(sender: UIButton) {
         self.drawRect.removeAll()
+        self.drawRect.changeBackColor(UIColor.whiteColor())
+        self.drawRect.changeToolColor(UIColor.blackColor())
     }
 }
 

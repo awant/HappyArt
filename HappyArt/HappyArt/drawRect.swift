@@ -52,6 +52,7 @@ class DrawRect: UIView, ColorChanging {
     func removeAll()
     {
         bezierBuffer.removeAll()
+        self.setNeedsDisplay()
     }
     
     func setupGestures()
