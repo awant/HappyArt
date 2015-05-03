@@ -8,8 +8,10 @@
 
 import UIKit
 
-let multipleForBrush = CGFloat(10)
+let multipleForBrush = CGFloat(30)
 let minSizeForBrush = CGFloat(0.1)
+let sizeOfStrongSprayer = CGFloat(0.2)
+let sizeOfSoftSprayer = CGFloat(2)
 
 enum MainTool
 {
@@ -18,6 +20,8 @@ enum MainTool
     case Rect
     case Oval
     case Rubber
+    case StrongSprayer
+    case SoftSprayer
 }
 
 class Tool {
@@ -36,7 +40,7 @@ class Tool {
         color = UIColor.blackColor()
         start = CGPoint(x: 0, y: 0)
         end = CGPoint(x: 0, y: 0)
-        mainTool = .Oval
+        mainTool = .StrongSprayer
         isDrawing = false
         size = defaultLineWidth
     }
@@ -60,6 +64,10 @@ class Tool {
         case .Rubber:
             pathCustom.color = UIColor.whiteColor()
             path.addLineToPoint(end)
+        case .StrongSprayer:
+            addStrongSprayer(path)
+        case .SoftSprayer:
+            addSoftSprayer(path)
         default:
             println("I hate swift because of 'default' things")
         }
@@ -81,5 +89,35 @@ class Tool {
         path.addLineToPoint(end)
         return path
     }
+    
+    func addStrongSprayer(path: UIBezierPath)
+    {
+        var r: CGFloat = CGFloat(arc4random())
+        r = (r / CGFloat(UINT32_MAX))*size/2
+        var phi: CGFloat = CGFloat(arc4random())
+        phi = (phi / CGFloat(UINT32_MAX))*CGFloat(2*M_PI)
+        
+        path.moveToPoint(CGPoint(x: end.x+r*cos(phi), y: end.y+r*sin(phi)))
+        path.addLineToPoint(CGPoint(x: end.x+r*cos(phi)+sizeOfStrongSprayer, y: end.y+r*sin(phi)+sizeOfStrongSprayer))
+    }
+    
+    func addSoftSprayer(path: UIBezierPath)
+    {
+        path.lineWidth = sizeOfSoftSprayer
+        var r: CGFloat = CGFloat(arc4random())
+        r = (r / CGFloat(UINT32_MAX))*size*4
+        var phi: CGFloat = CGFloat(arc4random())
+        phi = (phi / CGFloat(UINT32_MAX))*CGFloat(2*M_PI)
+        
+        path.moveToPoint(CGPoint(x: end.x+r*cos(phi), y: end.y+r*sin(phi)))
+        path.addLineToPoint(CGPoint(x: end.x+r*cos(phi)+sizeOfSoftSprayer, y: end.y+r*sin(phi)+sizeOfSoftSprayer))
+    }
 }
+
+
+
+
+
+
+
 
