@@ -40,7 +40,7 @@ class Tool {
         color = UIColor.blackColor()
         start = CGPoint(x: 0, y: 0)
         end = CGPoint(x: 0, y: 0)
-        mainTool = .StrongSprayer
+        mainTool = .Brush
         isDrawing = false
         size = defaultLineWidth
     }
