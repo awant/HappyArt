@@ -8,17 +8,31 @@
 
 import UIKit
 
-class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource {
+protocol ColorChanging {
+    func changeBackColor(color: UIColor)
+    func changeToolColor(color: UIColor)
+}
+
+class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource, ColorChanging {
 
     @IBOutlet weak var drawRect: DrawRect!
     @IBOutlet weak var sizeOfBrush: UISlider!
     
+    @IBOutlet weak var toolsView: UIView!
     @IBOutlet weak var drawView: UIView!
+  
+    @IBOutlet weak var colorView: ColorView!
+    
+    @IBOutlet weak var backColor: UIButton!
+    @IBOutlet weak var toolColor: UIButton!
     var tools: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tools = ["Brush", "Line", "Rect", "Oval", "Rubber", "StrongSprayer", "SoftSprayer"]
+        self.colorView.hidden = true
+        self.colorView.delegate = self.drawRect
+        self.drawRect.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,5 +105,38 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
                 println("I hate your way to realize it")
         }
     }
+
+    @IBAction func setColorViewBackColor(sender: UIButton) {
+        showColorView("setBackColor:")
+    }
+    
+    @IBAction func hideColorView(sender: UIButton) {
+         self.colorView.hidden = true
+    }
+   
+    
+    @IBAction func setColorViewToolColor(sender: UIButton) {
+        showColorView("setToolColor:")
+    }
+    
+    func showColorView(action: Selector) {
+        self.colorView.hidden = false
+        var buttonFrame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        var i:CGFloat = 1.0
+        while i > 0{
+            self.colorView.makeRainbowButtons(buttonFrame, sat: i ,bright: 1.0, action: action)
+            i = i - 0.2
+            buttonFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height
+        }
+    }
+    
+    func changeBackColor(color: UIColor) {
+        self.backColor.backgroundColor = color
+    }
+    
+    func changeToolColor(color: UIColor) {
+        self.toolColor.backgroundColor = color
+    }
+    
 }
 
