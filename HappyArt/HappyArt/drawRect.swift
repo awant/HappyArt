@@ -10,11 +10,13 @@
 
 import UIKit
 
-class DrawRect: UIView {
+class DrawRect: UIView, ColorChanging {
     
     var bezierBuffer: [CustomBezier] = []
     var tool: Tool
     var isFirstCall: Bool
+    
+    var delegate: ColorChanging?
     
     required init(coder aDecoder: NSCoder)
     {
@@ -95,6 +97,15 @@ class DrawRect: UIView {
         self.setNeedsDisplay()
     }
     
+    func changeBackColor(color: UIColor) {
+        self.backgroundColor = color
+        delegate?.changeBackColor(color)
+    }
+    
+    func changeToolColor(color: UIColor) {
+        tool.color = color
+        delegate?.changeToolColor(color)
+    }
 }
 
 
