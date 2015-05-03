@@ -53,5 +53,8 @@ class DrawVC: UIViewController, ImageSaving {
         drawRect.tool.size = CGFloat(multipleForBrush) * CGFloat(sizeOfBrush.value)
     }
 
+    func imageSaved(imageName: NSString) {
+        self.navigationItem.title = imageName as String
+    }
 }
 

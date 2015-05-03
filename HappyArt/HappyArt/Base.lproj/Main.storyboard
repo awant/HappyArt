@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IM7-nd-mml">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IM7-nd-mml">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -151,7 +151,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECk-pJ-Nhm">
-                                        <rect key="frame" x="546" y="102" width="48" height="30"/>
+                                        <rect key="frame" x="542" y="100" width="48" height="30"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -163,9 +163,8 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="kPl-hU-oUp" firstAttribute="leading" secondItem="XH6-fB-MBt" secondAttribute="leading" constant="10" id="1bB-Tb-tEC"/>
-                                    <constraint firstAttribute="trailing" secondItem="ECk-pJ-Nhm" secondAttribute="trailing" constant="6" id="3es-ps-leS"/>
+                                    <constraint firstAttribute="trailing" secondItem="ECk-pJ-Nhm" secondAttribute="trailing" constant="10" id="3es-ps-leS"/>
                                     <constraint firstItem="I5X-vw-0Ci" firstAttribute="top" secondItem="XH6-fB-MBt" secondAttribute="top" constant="10" id="5wI-UD-i9D"/>
-                                    <constraint firstItem="ECk-pJ-Nhm" firstAttribute="top" secondItem="XH6-fB-MBt" secondAttribute="top" constant="102" id="9NT-4q-pbm"/>
                                     <constraint firstItem="Ppe-4Z-uE1" firstAttribute="leading" secondItem="OB2-jf-UYz" secondAttribute="trailing" constant="10" id="9rf-gZ-I2k"/>
                                     <constraint firstItem="kPl-hU-oUp" firstAttribute="top" secondItem="I5X-vw-0Ci" secondAttribute="bottom" constant="10" id="NRS-hM-lVT"/>
                                     <constraint firstItem="OB2-jf-UYz" firstAttribute="centerY" secondItem="Ppe-4Z-uE1" secondAttribute="centerY" constant="0.5" id="NuF-Zh-2T3"/>
@@ -176,7 +175,7 @@
                                     <constraint firstItem="OB2-jf-UYz" firstAttribute="leading" secondItem="I5X-vw-0Ci" secondAttribute="trailing" constant="20" id="bnY-HQ-3d6"/>
                                     <constraint firstAttribute="bottom" secondItem="N4l-A7-k4o" secondAttribute="bottom" constant="10" id="e8V-on-tLn"/>
                                     <constraint firstItem="I5X-vw-0Ci" firstAttribute="centerY" secondItem="OB2-jf-UYz" secondAttribute="centerY" id="gT3-T0-z10"/>
-                                    <constraint firstItem="N4l-A7-k4o" firstAttribute="top" secondItem="ECk-pJ-Nhm" secondAttribute="bottom" constant="8" id="tUg-Sp-5pb"/>
+                                    <constraint firstItem="N4l-A7-k4o" firstAttribute="top" secondItem="ECk-pJ-Nhm" secondAttribute="bottom" constant="10" id="tUg-Sp-5pb"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDx-40-st0" customClass="DrawRect" customModule="HappyArt" customModuleProvider="target">

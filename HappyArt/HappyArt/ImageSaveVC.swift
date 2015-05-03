@@ -10,6 +10,7 @@ import UIKit
 
 protocol ImageSaving {
     func takeImage() -> UIImage
+    func imageSaved(imageName: NSString)
 }
 
 class ImageSaveVC: UIViewController {
@@ -27,8 +28,11 @@ class ImageSaveVC: UIViewController {
     
     @IBAction func saveImage(sender: UIButton) {
         let imageData = NSData(data: UIImagePNGRepresentation(delegate?.takeImage()))
-        if let newImageName = imageName.text {
-            imageData.writeToFile(newImageName.stringByAppendingString(".png"), atomically: true)
+        if var newImageName = imageName.text {
+            newImageName = newImageName.stringByAppendingString(".png")
+            imageData.writeToFile(newImageName, atomically: true)
+            delegate?.imageSaved(newImageName)
         }
+        self.navigationController?.popViewControllerAnimated(false)
     }
 }
