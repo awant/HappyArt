@@ -53,6 +53,7 @@ class DrawRect: UIView, ColorChanging {
         if bezierBuffer.count > 0
         {
             bezierBuffer.removeLast()
+            nBezier--;
             self.setNeedsDisplay()
         }
     }
@@ -61,6 +62,8 @@ class DrawRect: UIView, ColorChanging {
     {
         bezierBuffer.removeAll()
         backgroundDelegate?.removeAll()
+        nBezier = 0
+        self.changeToolColor(UIColor.blackColor())
         self.setNeedsDisplay()
     }
     
@@ -140,6 +143,7 @@ class DrawRect: UIView, ColorChanging {
     
     func flushToBackground()
     {
+        nBezier = 0
         backgroundDelegate?.drawBezierBuffer(bezierBuffer)
         removeAll()
     }

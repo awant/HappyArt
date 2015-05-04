@@ -42,7 +42,6 @@ class Background: UIView, BackgroundProtocol {
     func drawBezierBuffer(bezierBuffer: [CustomBezier])
     {
         self.bezierBuffer += bezierBuffer
-        println("background \(self.bezierBuffer.count)")
         self.setNeedsDisplay()
     }
     
@@ -54,6 +53,7 @@ class Background: UIView, BackgroundProtocol {
     func removeAll()
     {
         bezierBuffer.removeAll()
+        self.changeBackColor(UIColor.whiteColor())
         self.setNeedsDisplay()
     }
     

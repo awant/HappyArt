@@ -8,7 +8,7 @@
 
 import UIKit
 
-let multipleForBrush = CGFloat(30)
+let multipleForBrush = CGFloat(25)
 let minSizeForBrush = CGFloat(0.1)
 let sizeOfStrongSprayer = CGFloat(0.2)
 let sizeOfSoftSprayer = CGFloat(2)
