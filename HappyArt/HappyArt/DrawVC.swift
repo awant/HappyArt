@@ -26,11 +26,10 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBOutlet weak var backColor: UIButton!
     @IBOutlet weak var toolColor: UIButton!
-    var tools: NSArray = []
+    //var tools: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tools = ["Brush", "Line", "Rect", "Oval", "Rubber", "StrongSprayer", "SoftSprayer"]
         self.colorView.hidden = true
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
@@ -87,24 +86,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     func  pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch(row) {
-        case 0:
-            drawRect.tool.mainTool = .Brush
-        case 1:
-            drawRect.tool.mainTool = .Line
-        case 2:
-            drawRect.tool.mainTool = .Rect
-        case 3:
-            drawRect.tool.mainTool = .Oval
-        case 4:
-            drawRect.tool.mainTool = .Rubber
-        case 5:
-            drawRect.tool.mainTool = .StrongSprayer
-        case 6:
-            drawRect.tool.mainTool = .SoftSprayer
-        default:
-            println("I hate your way to realize it")
-        }
+        drawRect.tool.mainTool = tools[row]
     }
     
     @IBAction func setColorViewBackColor(sender: UIButton) {

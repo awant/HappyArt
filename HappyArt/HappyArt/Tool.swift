@@ -13,20 +13,11 @@ let minSizeForBrush = CGFloat(0.1)
 let sizeOfStrongSprayer = CGFloat(0.2)
 let sizeOfSoftSprayer = CGFloat(2)
 
-enum MainTool
-{
-    case Brush
-    case Line
-    case Rect
-    case Oval
-    case Rubber
-    case StrongSprayer
-    case SoftSprayer
-}
+let tools = ["Brush", "Line", "Rect", "Oval", "Rubber", "StrongSprayer", "SoftSprayer"]
 
 class Tool {
     
-    var mainTool: MainTool
+    var mainTool: String
     var color: UIColor
     var size: CGFloat
     
@@ -40,7 +31,7 @@ class Tool {
         color = UIColor.blackColor()
         start = CGPoint(x: 0, y: 0)
         end = CGPoint(x: 0, y: 0)
-        mainTool = .Brush
+        mainTool = tools[0]
         isDrawing = false
         size = defaultLineWidth
     }
@@ -49,27 +40,27 @@ class Tool {
     {
         var path = pathCustom.bezier
         switch mainTool {
-        case .Brush:
+        case "Brush":
             path.addLineToPoint(end)
-        case .Line:
+        case "Line":
             path.removeAllPoints()
             path.moveToPoint(start)
             path.addLineToPoint(end)
-        case .Rect:
+        case "Rect":
             path.removeAllPoints()
             path.appendPath(UIBezierPath(rect: CGRect(origin: start, size: CGSize(width: end.x - start.x, height: end.y - start.y))))
-        case .Oval:
+        case "Oval":
             path.removeAllPoints()
             path.appendPath(UIBezierPath(ovalInRect: CGRect(origin: start, size: CGSize(width: end.x - start.x, height: end.y - start.y))))
-        case .Rubber:
+        case "Rubber":
             pathCustom.color = UIColor.whiteColor()
             path.addLineToPoint(end)
-        case .StrongSprayer:
+        case "StrongSprayer":
             addStrongSprayer(path)
-        case .SoftSprayer:
+        case "SoftSprayer":
             addSoftSprayer(path)
         default:
-            println("I hate swift because of 'default' things")
+            path.addLineToPoint(end)
         }
     }
     
