@@ -120,13 +120,23 @@ class DrawRect: UIView, ColorChanging {
         delegate?.changeToolColor(color)
     }
     
-    func turnCurrentLayerIntoBackground() {
-        /*
-        println("turn current layer into background")
-        newLayer = CALayer()
-        newLayer.frame = self.layer.bounds
-        newLayer.backgroundColor = UIColor.redColor().CGColor
-        self.layer.insertSublayer(newLayer, below: self.layer)*/
+    func turnCurrentLayerIntoBackground()
+    {
+        UIGraphicsBeginImageContext(self.bounds.size)
+        self.layer.renderInContext(UIGraphicsGetCurrentContext())
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        
+        self.backgroundColor = UIColor(patternImage: image)
+//        var background = image
+//        var sub = UIView()
+//        sub.backgroundColor = UIColor.redColor()
+//        sub.frame = self.bounds
+//        self.addSubview(sub)
+//        self.sendSubviewToBack(sub)
+//        //self.contentMode = UIViewContentMode(rawValue: )
+//        //myView.contentMode = UIViewContentModeScaleAspectFit;
     }
 }
 
