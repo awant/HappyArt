@@ -8,9 +8,14 @@
 //
 //
 
+let maxBezierInLayer = 5
+
 import UIKit
 
 class DrawRect: UIView, ColorChanging {
+    
+    var newLayer: CALayer!
+    var nBezier: Int
     
     var bezierBuffer: [CustomBezier] = []
     var tool: Tool
@@ -22,6 +27,7 @@ class DrawRect: UIView, ColorChanging {
     {
         tool = Tool()
         isFirstCall = true
+        nBezier = 0
         super.init(coder: aDecoder)
         setupGestures()
     }
@@ -67,6 +73,7 @@ class DrawRect: UIView, ColorChanging {
         bezierBuffer.append(CustomBezier())
         bezierBuffer.last?.bezier.lineWidth = tool.size
         bezierBuffer.last?.color = tool.color
+        bezierBuffer.last!.color = bezierBuffer.last!.color.colorWithAlphaComponent(tool.transparent)
         bezierBuffer.last?.bezier.moveToPoint(tool.start)
     }
     
@@ -87,6 +94,11 @@ class DrawRect: UIView, ColorChanging {
         else if panGesture.state == UIGestureRecognizerState.Ended
         {
             tool.isDrawing = false
+            nBezier++
+            if nBezier == maxBezierInLayer
+            {
+                turnCurrentLayerIntoBackground()
+            }
         }
     }
     
@@ -107,5 +119,23 @@ class DrawRect: UIView, ColorChanging {
         tool.color = color
         delegate?.changeToolColor(color)
     }
+    
+    func turnCurrentLayerIntoBackground() {
+        /*
+        println("turn current layer into background")
+        newLayer = CALayer()
+        newLayer.frame = self.layer.bounds
+        newLayer.backgroundColor = UIColor.redColor().CGColor
+        self.layer.insertSublayer(newLayer, below: self.layer)*/
+    }
 }
+
+
+
+
+
+
+
+
+
 
