@@ -19,6 +19,7 @@
 		F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */; };
 		F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */; };
 		F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */; };
+		F9DC8E711AF6EDEF00028616 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputVC.swift; sourceTree = "<group>"; };
 		F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageOpenVC.swift; sourceTree = "<group>"; };
 		F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaveVC.swift; sourceTree = "<group>"; };
+		F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				F936D35C1AF2818A0034C998 /* Main.storyboard */,
 				84D40C741AF51FCA007357B7 /* drawRect.swift */,
+				F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */,
 				84E16ABF1AF5046F00DE5647 /* VCs */,
 				84E16AC01AF5048E00DE5647 /* Models */,
 				F936D35F1AF2818A0034C998 /* Images.xcassets */,
@@ -251,6 +254,7 @@
 				F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */,
 				F936D3591AF2818A0034C998 /* AppDelegate.swift in Sources */,
 				84D40C791AF523BA007357B7 /* Tool.swift in Sources */,
+				F9DC8E711AF6EDEF00028616 /* ColorPicker.swift in Sources */,
 				84D40C751AF51FCA007357B7 /* drawRect.swift in Sources */,
 				F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */,
 				F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */,
