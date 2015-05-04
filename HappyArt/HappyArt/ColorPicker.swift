@@ -8,16 +8,22 @@
 
 import UIKit
 
+let numberOfRainbowColors: CGFloat = 12.0
+let numberOfColors: CGFloat = 13.0
+let numberOfSatLevels: CGFloat = 6.0
+let setBackColorSelector: Selector = "setBackColor:"
+let setToolColorSelector: Selector = "setToolColor:"
+
 class ColorView: UIView {
     var delegate: ColorChanging?
     
     func makeRainbowButtons(buttonFrame:CGRect, sat:CGFloat, bright:CGFloat, action: Selector) {
         var myButtonFrame = buttonFrame
-        for i in 0..<12{  //3
-            let hue:CGFloat = CGFloat(i) / 12.0 //4
-            let color = UIColor(hue: hue, saturation: sat, brightness: bright, alpha: 1.0) //5
-            let aButton = UIButton(frame: myButtonFrame) //6
-            myButtonFrame.origin.x = myButtonFrame.size.width + myButtonFrame.origin.x //7
+        for i in 0..<Int(numberOfRainbowColors) {
+            let hue:CGFloat = CGFloat(i) / numberOfRainbowColors
+            let color = UIColor(hue: hue, saturation: sat, brightness: bright, alpha: 1.0)
+            let aButton = UIButton(frame: myButtonFrame)
+            myButtonFrame.origin.x = myButtonFrame.size.width + myButtonFrame.origin.x
             aButton.backgroundColor = color
             self.addSubview(aButton)
             aButton.addTarget(self, action: action, forControlEvents: UIControlEvents.TouchUpInside)
@@ -41,5 +47,6 @@ class ColorView: UIView {
     func setToolColor(sender:UIButton) {
         let color = sender.backgroundColor!
         delegate?.changeToolColor(color)
+        self.hidden = true
     }
 }
