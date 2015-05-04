@@ -8,13 +8,13 @@
 //
 //
 
-let maxBezierInLayer = 5
+let maxBeziersForCancel = 10
+let maxBeziersInLayer = 20
 
 import UIKit
 
 class DrawRect: UIView, ColorChanging {
     
-    var newLayer: CALayer!
     var nBezier: Int
     
     var bezierBuffer: [CustomBezier] = []
@@ -22,6 +22,7 @@ class DrawRect: UIView, ColorChanging {
     var isFirstCall: Bool
     
     var delegate: ColorChanging?
+    var backgroundDelegate: BackgroundProtocol!
     
     required init(coder aDecoder: NSCoder)
     {
@@ -30,6 +31,7 @@ class DrawRect: UIView, ColorChanging {
         nBezier = 0
         super.init(coder: aDecoder)
         setupGestures()
+        self.backgroundColor = self.backgroundColor?.colorWithAlphaComponent(0.0)
     }
     
     override func drawRect(rect: CGRect)
@@ -58,6 +60,7 @@ class DrawRect: UIView, ColorChanging {
     func removeAll()
     {
         bezierBuffer.removeAll()
+        backgroundDelegate?.removeAll()
         self.setNeedsDisplay()
     }
     
@@ -82,6 +85,13 @@ class DrawRect: UIView, ColorChanging {
         tool.setPoint(bezierBuffer.last!)
         tool.isDrawing = false
         self.setNeedsDisplay()
+        nBezier++
+        if nBezier == maxBeziersInLayer
+        {
+            turnCurrentLayerIntoBackground()
+            nBezier -= maxBeziersInLayer-maxBeziersForCancel
+        }
+        println("\(bezierBuffer.count)")
     }
     
     func pan(panGesture: UIPanGestureRecognizer)
@@ -95,10 +105,12 @@ class DrawRect: UIView, ColorChanging {
         {
             tool.isDrawing = false
             nBezier++
-            if nBezier == maxBezierInLayer
+            if nBezier == maxBeziersInLayer
             {
                 turnCurrentLayerIntoBackground()
+                nBezier -= maxBeziersInLayer-maxBeziersForCancel
             }
+            println("\(bezierBuffer.count)")
         }
     }
     
@@ -110,34 +122,28 @@ class DrawRect: UIView, ColorChanging {
         self.setNeedsDisplay()
     }
     
-    func changeBackColor(color: UIColor) {
-        self.backgroundColor = color
+    func changeBackColor(color: UIColor)
+    {
+        //self.backgroundColor = color
+        backgroundDelegate?.changeBackColor(color)
         delegate?.changeBackColor(color)
     }
     
-    func changeToolColor(color: UIColor) {
+    func changeToolColor(color: UIColor)
+    {
         tool.color = color
         delegate?.changeToolColor(color)
     }
     
     func turnCurrentLayerIntoBackground()
     {
-        UIGraphicsBeginImageContext(self.bounds.size)
-        self.layer.renderInContext(UIGraphicsGetCurrentContext())
-        var image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        
-        self.backgroundColor = UIColor(patternImage: image)
-//        var background = image
-//        var sub = UIView()
-//        sub.backgroundColor = UIColor.redColor()
-//        sub.frame = self.bounds
-//        self.addSubview(sub)
-//        self.sendSubviewToBack(sub)
-//        //self.contentMode = UIViewContentMode(rawValue: )
-//        //myView.contentMode = UIViewContentModeScaleAspectFit;
+        backgroundDelegate?.drawBezierBuffer(bezierBuffer)
+        bezierBuffer.removeRange(0...maxBeziersInLayer-maxBeziersForCancel-1)
     }
+    
+    
+    
+    
 }
 
 

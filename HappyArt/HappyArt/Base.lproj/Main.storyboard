@@ -240,6 +240,10 @@
                                     <constraint firstItem="N4l-A7-k4o" firstAttribute="top" secondItem="ECk-pJ-Nhm" secondAttribute="bottom" constant="10" id="tUg-Sp-5pb"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxv-MR-Pff" customClass="Background" customModule="HappyArt" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDx-40-st0" customClass="DrawRect" customModule="HappyArt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -250,12 +254,16 @@
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="XH6-fB-MBt" firstAttribute="top" secondItem="ZDx-40-st0" secondAttribute="bottom" id="3eS-CO-usU"/>
+                            <constraint firstItem="yxv-MR-Pff" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="H3j-84-XHW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XH6-fB-MBt" secondAttribute="bottom" id="IOf-0O-2DW"/>
+                            <constraint firstAttribute="trailing" secondItem="yxv-MR-Pff" secondAttribute="trailing" id="KyT-GS-sUp"/>
+                            <constraint firstItem="yxv-MR-Pff" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.666667" id="Qrt-vP-iwf"/>
                             <constraint firstItem="ZDx-40-st0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ZMV-g2-8Z8"/>
                             <constraint firstItem="XH6-fB-MBt" firstAttribute="width" secondItem="ZDx-40-st0" secondAttribute="width" id="fnG-xb-JTp"/>
                             <constraint firstItem="ZDx-40-st0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hBn-pO-JJD"/>
                             <constraint firstItem="xhj-o0-0G2" firstAttribute="top" secondItem="ZDx-40-st0" secondAttribute="bottom" constant="10" id="ihk-yH-rrC"/>
                             <constraint firstItem="XH6-fB-MBt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mPi-jn-8o5"/>
+                            <constraint firstItem="yxv-MR-Pff" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oiu-tH-TQ8"/>
                             <constraint firstAttribute="trailing" secondItem="ZDx-40-st0" secondAttribute="trailing" id="rYE-D9-cZY"/>
                             <constraint firstAttribute="height" secondItem="ZDx-40-st0" secondAttribute="height" multiplier="1.5" id="v82-ZP-PDL"/>
                         </constraints>
@@ -263,6 +271,7 @@
                     <navigationItem key="navigationItem" id="w15-hU-rti"/>
                     <connections>
                         <outlet property="backColor" destination="DwM-cR-DQM" id="DVj-dJ-QGM"/>
+                        <outlet property="background" destination="yxv-MR-Pff" id="zLk-GD-ITT"/>
                         <outlet property="colorView" destination="U7R-JM-1xm" id="gsc-8r-MPA"/>
                         <outlet property="drawRect" destination="ZDx-40-st0" id="6SH-cJ-7F1"/>
                         <outlet property="drawView" destination="ZDx-40-st0" id="LVS-5y-I2E"/>

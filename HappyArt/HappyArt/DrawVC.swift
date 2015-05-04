@@ -17,6 +17,8 @@ protocol ColorChanging {
 class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource, ColorChanging {
     
     @IBOutlet weak var drawRect: DrawRect!
+    @IBOutlet weak var background: Background!
+    
     @IBOutlet weak var sizeOfBrush: UISlider!
     
     @IBOutlet weak var toolsView: UIView!
@@ -26,13 +28,13 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBOutlet weak var backColor: UIButton!
     @IBOutlet weak var toolColor: UIButton!
-    //var tools: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.colorView.hidden = true
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
+        self.drawRect.backgroundDelegate = self.background
     }
     
     override func didReceiveMemoryWarning() {
