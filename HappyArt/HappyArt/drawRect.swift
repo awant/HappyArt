@@ -91,7 +91,6 @@ class DrawRect: UIView, ColorChanging {
             turnCurrentLayerIntoBackground()
             nBezier -= maxBeziersInLayer-maxBeziersForCancel
         }
-        println("\(bezierBuffer.count)")
     }
     
     func pan(panGesture: UIPanGestureRecognizer)
@@ -110,7 +109,6 @@ class DrawRect: UIView, ColorChanging {
                 turnCurrentLayerIntoBackground()
                 nBezier -= maxBeziersInLayer-maxBeziersForCancel
             }
-            println("\(bezierBuffer.count)")
         }
     }
     
@@ -124,7 +122,6 @@ class DrawRect: UIView, ColorChanging {
     
     func changeBackColor(color: UIColor)
     {
-        //self.backgroundColor = color
         backgroundDelegate?.changeBackColor(color)
         delegate?.changeBackColor(color)
     }
@@ -137,12 +134,15 @@ class DrawRect: UIView, ColorChanging {
     
     func turnCurrentLayerIntoBackground()
     {
-        backgroundDelegate?.drawBezierBuffer(bezierBuffer)
+        backgroundDelegate?.drawBezierBuffer(Array(bezierBuffer[0...maxBeziersInLayer-maxBeziersForCancel-1]))
         bezierBuffer.removeRange(0...maxBeziersInLayer-maxBeziersForCancel-1)
     }
     
-    
-    
+    func flushToBackground()
+    {
+        backgroundDelegate?.drawBezierBuffer(bezierBuffer)
+        removeAll()
+    }
     
 }
 
