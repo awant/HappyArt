@@ -28,10 +28,16 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     
     @IBOutlet weak var collectionView: UICollectionView!
 
+    @IBOutlet weak var isEmpty: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageSet.setImages()
-        println(imageSet.images.image.count)
+        self.collectionView.hidden = false
+        self.isEmpty.hidden = true
+        self.imageSet.setImages()
+        if (self.imageSet.images.image.count == 0) {
+            self.collectionView.hidden = true
+            self.isEmpty.hidden = false
+        }
     }
 
     override func didReceiveMemoryWarning() {

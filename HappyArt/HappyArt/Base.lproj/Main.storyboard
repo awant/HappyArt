@@ -99,8 +99,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="5Mf-lW-fTF">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="041-H2-Avq">
-                                <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97Z-bO-Cw6">
+                                <rect key="frame" x="10" y="30" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="041-H2-Avq">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lYx-fa-H62">
                                     <size key="itemSize" width="100" height="100"/>
@@ -144,9 +150,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5Mf-lW-fTF" firstAttribute="leading" secondItem="My8-lt-Nut" secondAttribute="leading" id="3vC-wz-ap8"/>
-                            <constraint firstItem="041-H2-Avq" firstAttribute="bottom" secondItem="jVZ-AK-2kr" secondAttribute="bottom" id="9dv-gI-vim"/>
+                            <constraint firstItem="041-H2-Avq" firstAttribute="bottom" secondItem="jVZ-AK-2kr" secondAttribute="top" id="9dv-gI-vim"/>
                             <constraint firstAttribute="trailing" secondItem="5Mf-lW-fTF" secondAttribute="trailing" id="Ey5-su-HJ8"/>
+                            <constraint firstItem="97Z-bO-Cw6" firstAttribute="top" secondItem="WRG-eQ-3gm" secondAttribute="bottom" constant="10" id="Vj8-bP-GyG"/>
+                            <constraint firstAttribute="trailing" secondItem="041-H2-Avq" secondAttribute="trailing" id="axe-Mu-GtC"/>
                             <constraint firstItem="5Mf-lW-fTF" firstAttribute="top" secondItem="WRG-eQ-3gm" secondAttribute="bottom" id="cuC-ke-DWC"/>
+                            <constraint firstItem="97Z-bO-Cw6" firstAttribute="leading" secondItem="My8-lt-Nut" secondAttribute="leading" constant="10" id="fvg-bz-4gJ"/>
                             <constraint firstItem="041-H2-Avq" firstAttribute="width" secondItem="My8-lt-Nut" secondAttribute="width" id="lpT-J9-HjR"/>
                             <constraint firstItem="jVZ-AK-2kr" firstAttribute="top" secondItem="5Mf-lW-fTF" secondAttribute="bottom" id="mWv-Rq-Mcm"/>
                             <constraint firstItem="041-H2-Avq" firstAttribute="top" secondItem="WRG-eQ-3gm" secondAttribute="bottom" id="zaa-Fx-HGm"/>
@@ -154,6 +163,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="041-H2-Avq" id="TXF-al-xxw"/>
+                        <outlet property="isEmpty" destination="97Z-bO-Cw6" id="ufr-qM-wd7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DbX-N3-nA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
