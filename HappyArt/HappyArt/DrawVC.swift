@@ -59,13 +59,9 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     func takeImage() -> UIImage {
-        /*  UIGraphicsBeginImageContext(self.drawView.frame.size)
-        self.drawView.drawRect(self.drawView.frame)
-        var image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()*/
-        
-        UIGraphicsBeginImageContext(self.drawView.bounds.size)
-        self.drawView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        self.drawRect.flushToBackground()
+        UIGraphicsBeginImageContext(self.background.bounds.size)
+        self.background.layer.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -95,7 +91,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return "\(tools[row])"
+        return tools[row]
     }
     
     func  pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
