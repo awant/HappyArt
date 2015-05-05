@@ -63,6 +63,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     func takeImage() -> UIImage {
+        println("takeImage")
         self.drawRect.flushToBackground()
         UIGraphicsBeginImageContext(self.background.bounds.size)
         self.background.layer.renderInContext(UIGraphicsGetCurrentContext())

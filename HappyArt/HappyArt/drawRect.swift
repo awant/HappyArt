@@ -154,7 +154,9 @@ class DrawRect: UIView, ColorChanging {
     {
         nBezier = 0
         backgroundDelegate?.drawBezierBuffer(bezierBuffer)
-        removeAll()
+        bezierBuffer.removeAll()
+        self.changeToolColor(UIColor.blackColor())
+        self.setNeedsDisplay()
     }
     
 }
