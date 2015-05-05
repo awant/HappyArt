@@ -30,9 +30,7 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
 
     @IBOutlet weak var isEmpty: UILabel!
     override func viewDidLoad() {
-        super.viewDidLoad()
-        self.collectionView.hidden = false
-        self.isEmpty.hidden = true
+        super.viewDidAppear(true)
         self.imageSet.setImages()
         if (self.imageSet.images.image.count == 0) {
             self.collectionView.hidden = true

@@ -25,6 +25,9 @@ class ImageSaveVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /* if (openedImage.openedImageExists == true) {
+            
+        }*/
     }
     
     override func didReceiveMemoryWarning() {
