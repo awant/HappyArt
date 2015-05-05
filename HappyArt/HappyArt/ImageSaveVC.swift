@@ -10,7 +10,12 @@ import UIKit
 
 protocol ImageSaving {
     func takeImage() -> UIImage
-    func imageSaved(imageName: NSString)
+    func imageSaved(name: String)
+}
+
+func documentsDirectory() -> String {
+    let documentsFolderPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+    return documentsFolderPath
 }
 
 class ImageSaveVC: UIViewController {
@@ -28,10 +33,12 @@ class ImageSaveVC: UIViewController {
     
     @IBAction func saveImage(sender: UIButton) {
         let imageData = NSData(data: UIImagePNGRepresentation(delegate?.takeImage()))
-        if var newImageName = imageName.text {
-            newImageName = newImageName.stringByAppendingString(".png")
-            imageData.writeToFile(newImageName, atomically: true)
-            delegate?.imageSaved(newImageName)
+        if let newImageName = imageName.text {
+            var newImagePath = documentsDirectory()//.stringByAppendingPathComponent("images")
+            newImagePath = newImagePath.stringByAppendingPathComponent("\(newImageName).png")
+            imageData.writeToFile(newImagePath, atomically: true)
+            delegate?.imageSaved(newImagePath.lastPathComponent)
+            println("\(newImagePath)")
         }
         self.navigationController?.popViewControllerAnimated(false)
     }

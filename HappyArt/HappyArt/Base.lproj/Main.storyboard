@@ -85,22 +85,80 @@
             <point key="canvasLocation" x="-433" y="359"/>
         </scene>
         <!--Image OpenVC-->
-        <scene sceneID="j0R-Qi-DaU">
+        <scene sceneID="4fk-tl-f6Q">
             <objects>
-                <viewController storyboardIdentifier="imageOpenVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ixA-Yg-8fe" customClass="ImageOpenVC" customModule="HappyArt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="imageOpenVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wzb-4H-5UN" customClass="ImageOpenVC" customModule="HappyArt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="glL-S3-dQc"/>
-                        <viewControllerLayoutGuide type="bottom" id="qXf-80-fVw"/>
+                        <viewControllerLayoutGuide type="top" id="WRG-eQ-3gm"/>
+                        <viewControllerLayoutGuide type="bottom" id="jVZ-AK-2kr"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xXj-zB-TuV">
+                    <view key="view" contentMode="scaleToFill" id="My8-lt-Nut">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="5Mf-lW-fTF">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="041-H2-Avq">
+                                <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lYx-fa-H62">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="FZH-UA-2xD" customClass="ImageCell" customModule="HappyArt" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XjT-8s-t99">
+                                                    <rect key="frame" x="1" y="1" width="98" height="98"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="XjT-8s-t99" secondAttribute="trailing" constant="1" id="Ale-Al-too"/>
+                                            <constraint firstItem="XjT-8s-t99" firstAttribute="leading" secondItem="FZH-UA-2xD" secondAttribute="leading" constant="1" id="bzD-5l-61H"/>
+                                            <constraint firstItem="XjT-8s-t99" firstAttribute="top" secondItem="FZH-UA-2xD" secondAttribute="top" constant="1" id="eAk-6w-Hv3"/>
+                                            <constraint firstAttribute="bottom" secondItem="XjT-8s-t99" secondAttribute="bottom" constant="1" id="n48-sY-2vM"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="XjT-8s-t99" id="mub-px-0Zb"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Wzb-4H-5UN" id="0Z3-C5-yxz"/>
+                                    <outlet property="delegate" destination="Wzb-4H-5UN" id="D5D-Xw-Z8D"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Mf-lW-fTF" firstAttribute="leading" secondItem="My8-lt-Nut" secondAttribute="leading" id="3vC-wz-ap8"/>
+                            <constraint firstItem="041-H2-Avq" firstAttribute="bottom" secondItem="jVZ-AK-2kr" secondAttribute="bottom" id="9dv-gI-vim"/>
+                            <constraint firstAttribute="trailing" secondItem="5Mf-lW-fTF" secondAttribute="trailing" id="Ey5-su-HJ8"/>
+                            <constraint firstItem="5Mf-lW-fTF" firstAttribute="top" secondItem="WRG-eQ-3gm" secondAttribute="bottom" id="cuC-ke-DWC"/>
+                            <constraint firstItem="041-H2-Avq" firstAttribute="width" secondItem="My8-lt-Nut" secondAttribute="width" id="lpT-J9-HjR"/>
+                            <constraint firstItem="jVZ-AK-2kr" firstAttribute="top" secondItem="5Mf-lW-fTF" secondAttribute="bottom" id="mWv-Rq-Mcm"/>
+                            <constraint firstItem="041-H2-Avq" firstAttribute="top" secondItem="WRG-eQ-3gm" secondAttribute="bottom" id="zaa-Fx-HGm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="041-H2-Avq" id="TXF-al-xxw"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2yc-hJ-o9X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbX-N3-nA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-422" y="1033"/>
+            <point key="canvasLocation" x="-433" y="1109"/>
         </scene>
         <!--DrawVC-->
         <scene sceneID="tne-QT-ifu">

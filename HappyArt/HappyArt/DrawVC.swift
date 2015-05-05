@@ -15,7 +15,7 @@ protocol ColorChanging {
     func changeToolTransparentLevel(alpha: CGFloat)
 }
 
-class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource, ColorChanging {
+class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource, ColorChanging, ImageOpening {
     
     @IBOutlet weak var drawRect: DrawRect!
     @IBOutlet weak var sizeOfBrush: UISlider!
@@ -34,6 +34,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBOutlet weak var currColor: UIButton!
     
+   var openedImage = OpenedImage()
     //var tools: NSArray = []
     
     override func viewDidLoad() {
@@ -46,6 +47,9 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.tool.setTitle("Brush", forState: UIControlState.Normal)
         currColor.layer.borderWidth = 1
         currColor.layer.borderColor = UIColor.blackColor().CGColor
+        if (openedImage.openedImageExists == true) {
+            openImage(openedImage.image!, name: openedImage.name!)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,8 +86,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         drawRect.tool.size = multipleForBrush * CGFloat(sizeOfBrush.value) + minSizeForBrush
     }
     
-    func imageSaved(imageName: NSString) {
-        self.navigationItem.title = imageName as String
+    func imageSaved(name: String) {
+        self.navigationItem.title = name
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -180,6 +184,11 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         let color = self.currColor.backgroundColor?.colorWithAlphaComponent(alpha)
         self.currColor.backgroundColor = color
         self.toolColor.backgroundColor = color
+    }
+    
+    func openImage(image: UIImage, name: String) {
+        self.background.openImage(image, name: name)
+        self.navigationItem.title = name
     }
 }
 
