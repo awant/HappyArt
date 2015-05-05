@@ -132,7 +132,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
             i -= k
             buttonFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height
         }
-        buttonFrame = CGRect(x: self.currColor.frame.origin.x - 60, y: self.currColor.frame.origin.y + 30, width: 20, height: 20)
+        buttonFrame = CGRect(x: self.currColor.frame.origin.x - 55, y: self.currColor.frame.origin.y + 23, width: 20, height: 20)
         self.colorView.makeTransparentStepper(buttonFrame, action: action)
     }
     
