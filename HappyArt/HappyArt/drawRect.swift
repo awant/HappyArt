@@ -135,6 +135,15 @@ class DrawRect: UIView, ColorChanging {
         delegate?.changeToolColor(color)
     }
     
+    func changeBackTransparentLevel(alpha: CGFloat) {
+        delegate?.changeBackTransparentLevel(alpha)
+    }
+    
+    func changeToolTransparentLevel(alpha: CGFloat) {
+        tool.transparent = alpha
+        delegate?.changeToolTransparentLevel(alpha)
+    }
+    
     func turnCurrentLayerIntoBackground()
     {
         backgroundDelegate?.drawBezierBuffer(Array(bezierBuffer[0...maxBeziersInLayer-maxBeziersForCancel-1]))

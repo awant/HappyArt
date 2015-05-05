@@ -11,6 +11,8 @@ import UIKit
 protocol ColorChanging {
     func changeBackColor(color: UIColor)
     func changeToolColor(color: UIColor)
+    func changeBackTransparentLevel(alpha: CGFloat)
+    func changeToolTransparentLevel(alpha: CGFloat)
 }
 
 class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource, ColorChanging {
@@ -30,7 +32,9 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBOutlet weak var tool: UIButton!
     
+    @IBOutlet weak var currColor: UIButton!
     
+    @IBOutlet weak var setTransparentLevel: UIStepper!
     //var tools: NSArray = []
     
     override func viewDidLoad() {
@@ -41,6 +45,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
         self.tool.setTitle("Brush", forState: UIControlState.Normal)
+        currColor.layer.borderWidth = 1
+        currColor.layer.borderColor = UIColor.blackColor().CGColor
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,7 +106,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func setColorViewBackColor(sender: UIButton) {
-        self.hide.hidden = false
+        //self.hide.hidden = false
+        self.currColor.backgroundColor = self.background.backgroundColor
         showColorView(setBackColorSelector)
     }
     
@@ -110,7 +117,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     
     @IBAction func setColorViewToolColor(sender: UIButton) {
-        self.hide.hidden = true
+        //self.hide.hidden = true
+        self.currColor.backgroundColor = self.drawRect.tool.color
         showColorView(setToolColorSelector)
     }
     
@@ -119,19 +127,23 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         var buttonFrame = CGRect(x: 0, y: 0, width: setColorButtonWidth(action), height: setColorButtonHeight(action))
         var i: CGFloat = 1.0
         var k: CGFloat = i/numberOfSatLevels
-        while i > 0 {
+        while i >= 0 {
             self.colorView.makeRainbowButtons(buttonFrame, sat: i, bright: 1.0, action: action)
             i -= k
             buttonFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height
         }
+        buttonFrame = CGRect(x: self.currColor.frame.origin.x - 60, y: self.currColor.frame.origin.y + 30, width: 20, height: 20)
+        self.colorView.makeTransparentStepper(buttonFrame, action: action)
     }
     
     func changeBackColor(color: UIColor) {
         self.backColor.backgroundColor = color
+        self.currColor.backgroundColor = color
     }
     
     func changeToolColor(color: UIColor) {
         self.toolColor.backgroundColor = color
+        self.currColor.backgroundColor = color
     }
     
     @IBAction func cancelAll(sender: UIButton) {
@@ -146,13 +158,25 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     
     func setColorButtonWidth(action: Selector) -> CGFloat {
-        return (self.colorView.frame.width - (self.hide.frame.width + 20))/numberOfColors
+        return (self.colorView.frame.width - (self.hide.frame.width + 75))/numberOfColors
     }
     
     func setColorButtonHeight(action: Selector) -> CGFloat {
-        return self.colorView.frame.height/numberOfSatLevels
+        return self.colorView.frame.height/(numberOfSatLevels + 1)
     }
     
+    func changeBackTransparentLevel(alpha: CGFloat) {
+        let color = self.currColor.backgroundColor?.colorWithAlphaComponent(alpha)
+        self.background.backgroundColor = color
+        self.currColor.backgroundColor = color
+        self.backColor.backgroundColor = color
+    }
+    
+    func changeToolTransparentLevel(alpha: CGFloat) {
+        let color = self.currColor.backgroundColor?.colorWithAlphaComponent(alpha)
+        self.currColor.backgroundColor = color
+        self.toolColor.backgroundColor = color
+    }
 }
 
 

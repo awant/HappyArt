@@ -8,11 +8,14 @@
 
 import UIKit
 
-let numberOfRainbowColors: CGFloat = 12.0
-let numberOfColors: CGFloat = 13.0
-let numberOfSatLevels: CGFloat = 6.0
+let numberOfRainbowColors: CGFloat = 8.0
+let numberOfColors: CGFloat = 9.0
+let numberOfSatLevels: CGFloat = 5.0
 let setBackColorSelector: Selector = "setBackColor:"
 let setToolColorSelector: Selector = "setToolColor:"
+let setBackTransparentLevelSelector: Selector = "setBackTransparentLevel:"
+let setToolTransparentLevelSelector: Selector = "setToolTransparentLevel:"
+let maxTransparentLevel: CGFloat = 10.0
 
 class ColorView: UIView {
     var delegate: ColorChanging?
@@ -39,6 +42,20 @@ class ColorView: UIView {
         aButton.addTarget(self, action: action, forControlEvents: UIControlEvents.TouchUpInside)
     }
     
+    func makeTransparentStepper(buttonFrame:CGRect, action: Selector) {
+        let transparent = UIStepper(frame: buttonFrame)
+        transparent.autorepeat = true
+        transparent.maximumValue = Double(maxTransparentLevel)
+        transparent.value = transparent.maximumValue
+        self.addSubview(transparent)
+        if (action == setBackColorSelector) {
+            transparent.addTarget(self, action: setBackTransparentLevelSelector, forControlEvents: UIControlEvents.ValueChanged)
+        }
+        else {
+            transparent.addTarget(self, action: setToolTransparentLevelSelector, forControlEvents: UIControlEvents.ValueChanged)
+        }
+    }
+    
     func setBackColor(sender:UIButton) {
         let color = sender.backgroundColor!
         delegate?.changeBackColor(color)
@@ -47,6 +64,15 @@ class ColorView: UIView {
     func setToolColor(sender:UIButton) {
         let color = sender.backgroundColor!
         delegate?.changeToolColor(color)
-        self.hidden = true
+    }
+    
+    func setBackTransparentLevel(sender:UIStepper) {
+        let alpha = CGFloat(sender.value) / maxTransparentLevel
+        delegate?.changeBackTransparentLevel(alpha)
+    }
+    
+    func setToolTransparentLevel(sender:UIStepper) {
+        let alpha = CGFloat(sender.value) / maxTransparentLevel
+        delegate?.changeToolTransparentLevel(alpha)
     }
 }
