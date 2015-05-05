@@ -34,7 +34,6 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBOutlet weak var currColor: UIButton!
     
-    @IBOutlet weak var setTransparentLevel: UIStepper!
     //var tools: NSArray = []
     
     override func viewDidLoad() {
@@ -112,6 +111,11 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func hideColorView(sender: UIButton) {
+        for view in colorView.subviews {
+            if ((view as? UIButton != currColor) && (view as? UIButton != hide)) {
+                view.removeFromSuperview()
+            }
+        }
         self.colorView.hidden = true
     }
     
