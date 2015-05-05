@@ -14,7 +14,7 @@ protocol BackgroundProtocol {
     func removeAll()
 }
 
-class Background: UIView, BackgroundProtocol {
+class Background: UIView, BackgroundProtocol, ImageOpening {
     
     var bezierBuffer: [CustomBezier] = []
     var isFirstCall: Bool
@@ -57,6 +57,9 @@ class Background: UIView, BackgroundProtocol {
         self.setNeedsDisplay()
     }
     
+    func openImage(image: UIImage, name: String) {
+        self.backgroundColor = UIColor(patternImage: image)
+    }
     
 }
 

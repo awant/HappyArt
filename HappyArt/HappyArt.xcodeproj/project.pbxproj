@@ -20,6 +20,7 @@
 		F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */; };
 		F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */; };
 		F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */; };
+		F9CADCA81AF8F5EF008B1147 /* ImageSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CADCA71AF8F5EF008B1147 /* ImageSet.swift */; };
 		F9DC8E711AF6EDEF00028616 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputVC.swift; sourceTree = "<group>"; };
 		F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageOpenVC.swift; sourceTree = "<group>"; };
 		F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaveVC.swift; sourceTree = "<group>"; };
+		F9CADCA71AF8F5EF008B1147 /* ImageSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSet.swift; sourceTree = "<group>"; };
 		F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 		F936D3551AF2818A0034C998 /* HappyArt */ = {
 			isa = PBXGroup;
 			children = (
+				F9CADCA71AF8F5EF008B1147 /* ImageSet.swift */,
 				F936D35C1AF2818A0034C998 /* Main.storyboard */,
 				84D40C741AF51FCA007357B7 /* drawRect.swift */,
 				84F8A1FE1AF7EF62005C404F /* Background.swift */,
@@ -261,6 +264,7 @@
 				84D40C751AF51FCA007357B7 /* drawRect.swift in Sources */,
 				F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */,
 				F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */,
+				F9CADCA81AF8F5EF008B1147 /* ImageSet.swift in Sources */,
 				84F8A1FF1AF7EF62005C404F /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
