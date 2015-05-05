@@ -15,6 +15,7 @@ protocol ImageSaving {
 
 func documentsDirectory() -> String {
     let documentsFolderPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+    
     return documentsFolderPath
 }
 
@@ -22,12 +23,11 @@ class ImageSaveVC: UIViewController {
     
     @IBOutlet weak var imageName: UITextField!
     var delegate: ImageSaving?
+    var defaultName: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /* if (openedImage.openedImageExists == true) {
-            
-        }*/
+        imageName.text = defaultName?.stringByDeletingPathExtension
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,9 +39,10 @@ class ImageSaveVC: UIViewController {
         if let newImageName = imageName.text {
             var newImagePath = documentsDirectory()//.stringByAppendingPathComponent("images")
             newImagePath = newImagePath.stringByAppendingPathComponent("\(newImageName).png")
-            imageData.writeToFile(newImagePath, atomically: true)
-            delegate?.imageSaved(newImagePath.lastPathComponent)
-            println("\(newImagePath)")
+            if (imageData.writeToFile(newImagePath, atomically: true) == true) {
+                delegate?.imageSaved(newImagePath.lastPathComponent)
+                println("\(newImagePath)")
+            }
         }
         self.navigationController?.popViewControllerAnimated(false)
     }

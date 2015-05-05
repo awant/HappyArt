@@ -35,7 +35,6 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var currColor: UIButton!
     
    var openedImage = OpenedImage()
-    //var tools: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +58,11 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBAction func saveImage(sender: UIButton) {
         let imageSaveVC: ImageSaveVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageSaveVC") as! ImageSaveVC
         imageSaveVC.delegate = self
+        imageSaveVC.defaultName = openedImage.name
         self.navigationController?.pushViewController(imageSaveVC, animated: true)
     }
     
     func takeImage() -> UIImage {
-        println("takeImage")
         self.drawRect.flushToBackground()
         UIGraphicsBeginImageContext(self.background.bounds.size)
         self.background.layer.renderInContext(UIGraphicsGetCurrentContext())
@@ -106,7 +105,6 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     @IBAction func setColorViewBackColor(sender: UIButton) {
-        //self.hide.hidden = false
         self.currColor.backgroundColor = self.background.backgroundColor
         showColorView(setBackColorSelector)
     }
@@ -122,7 +120,6 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     
     @IBAction func setColorViewToolColor(sender: UIButton) {
-        //self.hide.hidden = true
         self.currColor.backgroundColor = self.drawRect.tool.color
         showColorView(setToolColorSelector)
     }

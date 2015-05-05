@@ -31,17 +31,16 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     @IBOutlet weak var isEmpty: UILabel!
     override func viewDidLoad() {
         super.viewDidAppear(true)
-        self.imageSet.setImages()
-        if (self.imageSet.images.image.count == 0) {
-            self.collectionView.hidden = true
-            self.isEmpty.hidden = false
-        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        updateImageCollection()
+    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.imageSet.images.image.count
@@ -62,5 +61,20 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
        // println(self.imageSet.images.image[indexPath.row].description)
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
+    
+    func updateImageCollection() -> Void {
+        self.imageSet.setImages()
+        if (self.imageSet.images.image.count == 0) {
+            self.collectionView.hidden = true
+            self.isEmpty.hidden = false
+        }
+        collectionView.reloadData()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        imageSet.clear()
+    }
+    
 
 }
