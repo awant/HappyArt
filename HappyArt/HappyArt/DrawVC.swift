@@ -43,7 +43,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
-        self.tool.setTitle("Brush", forState: UIControlState.Normal)
+        self.tool.setTitle(NSLocalizedString(self.drawRect.tool.mainTool, comment: "Tool"), forState: UIControlState.Normal)
         currColor.layer.borderWidth = 1
         currColor.layer.borderColor = UIColor.blackColor().CGColor
         if (openedImage.openedImageExists == true) {
@@ -100,12 +100,12 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return tools[row]
+        return NSLocalizedString(tools[row], comment: "Tool")
     }
     
     func  pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         drawRect.tool.mainTool = tools[row]
-        self.tool.setTitle(tools[row], forState: UIControlState.Normal)
+        self.tool.setTitle(NSLocalizedString(tools[row], comment: "Tool"), forState: UIControlState.Normal)
         self.pickerView.hidden = true
     }
     
