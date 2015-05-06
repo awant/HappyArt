@@ -44,6 +44,11 @@ class ImageSaveVC: UIViewController {
                 delegate?.imageSaved(newImagePath.lastPathComponent)
                 println("\(newImagePath)")
             }
+            else {
+                let tapAlert = UIAlertController(title: "Error", message: "Can't save image in \(newImagePath)", preferredStyle: UIAlertControllerStyle.Alert)
+                tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+                self.presentViewController(tapAlert, animated: true, completion: nil)
+            }
         }
         self.navigationController?.popViewControllerAnimated(false)
     }

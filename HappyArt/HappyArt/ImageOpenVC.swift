@@ -107,7 +107,7 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
             self.imageSet.clear()
             self.updateImageCollection()
         }))
-        tapAlert.addAction(UIAlertAction(title: "NO", style: .Destructive, handler: nil))
+        tapAlert.addAction(UIAlertAction(title: "NO", style: .Cancel, handler: nil))
         self.presentViewController(tapAlert, animated: true, completion: nil)
        
     }

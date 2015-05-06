@@ -58,7 +58,9 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBAction func saveImage(sender: UIButton) {
         let imageSaveVC: ImageSaveVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageSaveVC") as! ImageSaveVC
         imageSaveVC.delegate = self
-        imageSaveVC.defaultName = openedImage.name
+        if (openedImage.openedImageExists == true) {
+            imageSaveVC.defaultName = openedImage.name
+        }
         self.navigationController?.pushViewController(imageSaveVC, animated: true)
     }
     
@@ -68,6 +70,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.background.layer.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        self.openedImage.image = image
         
         return image
     }
@@ -152,7 +155,12 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func cancelAll(sender: UIButton) {
         self.drawRect.removeAll()
-        self.drawRect.changeBackColor(UIColor.whiteColor())
+        if (openedImage.openedImageExists == true) {
+            self.drawRect.changeBackColor(UIColor(patternImage: openedImage.image!))
+        }
+        else {
+            self.drawRect.changeBackColor(UIColor.whiteColor())
+        }
         self.drawRect.changeToolColor(UIColor.blackColor())
     }
     
