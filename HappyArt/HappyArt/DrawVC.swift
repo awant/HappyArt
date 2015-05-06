@@ -43,16 +43,14 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.sizeOfBrush.value = Float((defaultLineWidth - minSizeForBrush)/multipleForBrush)
         self.colorView.hidden = true
         self.pickerView.hidden = true
-        //
         self.viewForPicker.hidden = true
         viewForPicker.backgroundColor = colorView.backgroundColor
         viewForPicker.layer.cornerRadius = 10.0
         viewForPicker.layer.borderColor = UIColor.blackColor().CGColor
         viewForPicker.layer.borderWidth = 0.5
-        viewForPicker.clipsToBounds = true
-        //
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
@@ -188,7 +186,14 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func switcherChanged(sender: AnyObject)
     {
-        
+        drawRect.tool.isFilling = switcher.on
+    }
+    
+    @IBAction func handlePinch(recognizer : UIPinchGestureRecognizer)
+    {
+        drawRect.transform = CGAffineTransformScale(drawRect.transform, recognizer.scale, recognizer.scale)
+        background.transform = CGAffineTransformScale(background.transform, recognizer.scale, recognizer.scale)
+        recognizer.scale = 1
     }
     
     func setColorButtonWidth(action: Selector) -> CGFloat {

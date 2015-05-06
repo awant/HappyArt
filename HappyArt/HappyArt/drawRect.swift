@@ -79,6 +79,7 @@ class DrawRect: UIView, ColorChanging {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
     {
+        tool.fillColor = tool.color
         tool.start = (touches.first as! UITouch).locationInView(self)
         bezierBuffer.append(CustomBezier())
         bezierBuffer.last?.bezier.lineWidth = tool.size
