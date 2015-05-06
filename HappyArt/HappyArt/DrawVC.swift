@@ -139,7 +139,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     
     @IBAction func setColorViewToolColor(sender: UIButton) {
-        self.currColor.backgroundColor = self.drawRect.tool.color
+        self.currColor.backgroundColor = self.drawRect.tool.color.colorWithAlphaComponent(self.drawRect.tool.transparent)
         showColorView(setToolColorSelector)
     }
     
@@ -154,7 +154,14 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
             buttonFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height
         }
         buttonFrame = CGRect(x: self.currColor.frame.origin.x - 55, y: self.currColor.frame.origin.y + 23, width: 20, height: 20)
-        self.colorView.makeTransparentStepper(buttonFrame, action: action)
+        if (action == setBackColorSelector) {
+            var alpha: CGFloat = 0.0
+            self.backColor.backgroundColor?.getWhite(nil, alpha: &alpha)
+            self.colorView.makeTransparentStepper(buttonFrame, action: action, value: Double(alpha))
+        }
+        else {
+            self.colorView.makeTransparentStepper(buttonFrame, action: action, value: Double(self.drawRect.tool.transparent))
+        }
     }
     
     func changeBackColor(color: UIColor) {
