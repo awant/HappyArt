@@ -204,8 +204,15 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func handlePinch(recognizer : UIPinchGestureRecognizer)
     {
+        var xDir = drawRect.bounds.size.width/2 - recognizer.locationInView(drawRect).x
+        var yDir = drawRect.bounds.size.height/2 - recognizer.locationInView(drawRect).y
+        let scale = CGFloat(2)
+        var tx = (recognizer.scale-1) * xDir * scale
+        var ty = (recognizer.scale-1) * yDir * scale
         drawRect.transform = CGAffineTransformScale(drawRect.transform, recognizer.scale, recognizer.scale)
+        drawRect.transform = CGAffineTransformTranslate(drawRect.transform, tx, ty)
         background.transform = CGAffineTransformScale(background.transform, recognizer.scale, recognizer.scale)
+        background.transform = CGAffineTransformTranslate(background.transform, tx, ty)
         recognizer.scale = 1
     }
     
