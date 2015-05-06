@@ -185,21 +185,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxv-MR-Pff" customClass="Background" customModule="HappyArt" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="yxv-MR-Pff" customClass="Background" customModule="HappyArt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZDx-40-st0" customClass="DrawRect" customModule="HappyArt" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ZDx-40-st0" customClass="DrawRect" customModule="HappyArt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e9-ak-VfR" userLabel="ViewForPicker">
-                                <rect key="frame" x="165" y="219" width="270" height="162"/>
+                                <rect key="frame" x="135" y="201" width="330" height="198"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcu-Im-TXI">
-                                        <rect key="frame" x="8" y="0.0" width="254" height="162"/>
+                                        <rect key="frame" x="8" y="18" width="314" height="162"/>
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="Wwr-1Y-wh6"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="xn1-ky-Otc"/>
@@ -379,7 +379,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XH6-fB-MBt" secondAttribute="bottom" id="IOf-0O-2DW"/>
                             <constraint firstAttribute="trailing" secondItem="yxv-MR-Pff" secondAttribute="trailing" id="KyT-GS-sUp"/>
                             <constraint firstItem="U7R-JM-1xm" firstAttribute="top" secondItem="yxv-MR-Pff" secondAttribute="bottom" id="Q0g-gv-17a"/>
-                            <constraint firstItem="3e9-ak-VfR" firstAttribute="width" secondItem="ZDx-40-st0" secondAttribute="width" multiplier="0.45" id="Qeu-WH-EtP"/>
+                            <constraint firstItem="3e9-ak-VfR" firstAttribute="width" secondItem="ZDx-40-st0" secondAttribute="width" multiplier="0.55" id="Qeu-WH-EtP"/>
                             <constraint firstItem="ZDx-40-st0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ZMV-g2-8Z8"/>
                             <constraint firstAttribute="centerY" secondItem="3e9-ak-VfR" secondAttribute="centerY" id="agz-TC-jjh"/>
                             <constraint firstItem="XH6-fB-MBt" firstAttribute="width" secondItem="ZDx-40-st0" secondAttribute="width" id="fnG-xb-JTp"/>

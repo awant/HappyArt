@@ -41,7 +41,14 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         super.viewDidLoad()
         self.colorView.hidden = true
         self.pickerView.hidden = true
+        //
         self.viewForPicker.hidden = true
+        viewForPicker.backgroundColor = colorView.backgroundColor
+        viewForPicker.layer.cornerRadius = 10.0
+        viewForPicker.layer.borderColor = UIColor.blackColor().CGColor
+        viewForPicker.layer.borderWidth = 0.5
+        viewForPicker.clipsToBounds = true
+        //
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
