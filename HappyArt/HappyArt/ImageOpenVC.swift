@@ -39,18 +39,18 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     
     
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     @IBOutlet weak var isEmpty: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidAppear(true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         updateImageCollection()
@@ -75,12 +75,12 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
         return cell
     }
     
-   func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let mainVC: DrawVC = self.storyboard?.instantiateViewControllerWithIdentifier("mainVC") as! DrawVC
         mainVC.openedImage.openedImageExists = true
         mainVC.openedImage.image = self.imageSet.images.image[indexPath.row]
         mainVC.openedImage.name = self.imageSet.images.path[indexPath.row].lastPathComponent
-       // println(self.imageSet.images.image[indexPath.row].description)
+        // println(self.imageSet.images.image[indexPath.row].description)
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
     
@@ -107,10 +107,10 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
             self.imageSet.clear()
             self.updateImageCollection()
         }))
-        tapAlert.addAction(UIAlertAction(title: "NO", style: .Destructive, handler: nil))
+        tapAlert.addAction(UIAlertAction(title: "NO", style: .Cancel, handler: nil))
         self.presentViewController(tapAlert, animated: true, completion: nil)
-       
+        
     }
     
-
+    
 }

@@ -56,7 +56,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
-        self.tool.setTitle("Brush", forState: UIControlState.Normal)
+        self.tool.setTitle(NSLocalizedString(self.drawRect.tool.mainTool, comment: "Tool"), forState: UIControlState.Normal)
         currColor.layer.borderWidth = 1
         currColor.layer.borderColor = UIColor.blackColor().CGColor
         switcher.on = false
@@ -72,7 +72,9 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBAction func saveImage(sender: UIButton) {
         let imageSaveVC: ImageSaveVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageSaveVC") as! ImageSaveVC
         imageSaveVC.delegate = self
-        imageSaveVC.defaultName = openedImage.name
+        if (openedImage.openedImageExists == true) {
+            imageSaveVC.defaultName = openedImage.name
+        }
         self.navigationController?.pushViewController(imageSaveVC, animated: true)
     }
     
@@ -82,17 +84,16 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.background.layer.renderInContext(UIGraphicsGetCurrentContext())
         var image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        self.openedImage.image = image
         
         return image
     }
     
-    @IBAction func cancelAction(sender: AnyObject)
-    {
+    @IBAction func cancelAction(sender: AnyObject) {
         drawRect.removeLast()
     }
     
-    @IBAction func changedSizeOfBrush(sender: AnyObject)
-    {
+    @IBAction func changedSizeOfBrush(sender: AnyObject) {
         drawRect.tool.size = multipleForBrush * CGFloat(sizeOfBrush.value) + minSizeForBrush
     }
     
@@ -111,12 +112,12 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return tools[row]
+        return NSLocalizedString(tools[row], comment: "Tool")
     }
     
     func  pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         drawRect.tool.mainTool = tools[row]
-        self.tool.setTitle(tools[row], forState: UIControlState.Normal)
+        self.tool.setTitle(NSLocalizedString(tools[row], comment: "Tool"), forState: UIControlState.Normal)
         self.pickerView.hidden = true
         self.viewForPicker.hidden = true
         UIView.animateWithDuration(timeForBlackout, animations: {()->Void in
@@ -141,7 +142,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     
     @IBAction func setColorViewToolColor(sender: UIButton) {
-        self.currColor.backgroundColor = self.drawRect.tool.color
+        self.currColor.backgroundColor = self.drawRect.tool.color.colorWithAlphaComponent(self.drawRect.tool.transparent)
         showColorView(setToolColorSelector)
     }
     
@@ -157,7 +158,14 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         }
         var locStepper = CGPoint(x: self.hide.frame.origin.x - 49, y: self.hide.frame.origin.y-35)
         buttonFrame = CGRect(origin: locStepper, size: CGSize(width: 0,height: 0))
-        self.colorView.makeTransparentStepper(buttonFrame, action: action)
+        if (action == setBackColorSelector) {
+            var alpha: CGFloat = 0.0
+            self.backColor.backgroundColor?.getWhite(nil, alpha: &alpha)
+            self.colorView.makeTransparentStepper(buttonFrame, action: action, value: Double(alpha))
+        }
+        else {
+            self.colorView.makeTransparentStepper(buttonFrame, action: action, value: Double(self.drawRect.tool.transparent))
+        }
     }
     
     func changeBackColor(color: UIColor) {
@@ -172,7 +180,12 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func cancelAll(sender: UIButton) {
         self.drawRect.removeAll()
-        self.drawRect.changeBackColor(UIColor.whiteColor())
+        if (openedImage.openedImageExists == true) {
+            self.drawRect.changeBackColor(UIColor(patternImage: openedImage.image!))
+        }
+        else {
+            self.drawRect.changeBackColor(UIColor.whiteColor())
+        }
         self.drawRect.changeToolColor(UIColor.blackColor())
     }
     
@@ -186,8 +199,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     }
     
     
-    @IBAction func switcherChanged(sender: AnyObject)
-    {
+    @IBAction func switcherChanged(sender: AnyObject) {
         
     }
     
