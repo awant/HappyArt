@@ -19,6 +19,8 @@ class Tool {
     
     var mainTool: String
     var color: UIColor
+    var fillColor: UIColor
+    var isFilling: Bool
     var transparent: CGFloat
     var size: CGFloat
     
@@ -36,6 +38,9 @@ class Tool {
         mainTool = tools[0]
         isDrawing = false
         size = defaultLineWidth
+        fillColor = UIColor.blackColor()
+        isFilling = false
+        
     }
     
     func changeLastBezier(pathCustom: CustomBezier)

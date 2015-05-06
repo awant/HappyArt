@@ -34,6 +34,11 @@ class Background: UIView, BackgroundProtocol, ImageOpening {
         }
         for bezier in bezierBuffer
         {
+            if bezier.isFilling
+            {
+                bezier.fillColor.setFill()
+                bezier.bezier.fill()
+            }
             bezier.color.setStroke()
             bezier.bezier.stroke()
         }

@@ -14,6 +14,7 @@ let maxBeziersInLayer = 20
 import UIKit
 
 class DrawRect: UIView, ColorChanging {
+    
     var nBezier: Int
     
     var bezierBuffer: [CustomBezier] = []
@@ -39,9 +40,13 @@ class DrawRect: UIView, ColorChanging {
             isFirstCall = false
             return
         }
-        // Draw bezierBuffer
         for bezier in bezierBuffer
         {
+            if bezier.isFilling
+            {
+                bezier.fillColor.setFill()
+                bezier.bezier.fill()
+            }
             bezier.color.setStroke()
             bezier.bezier.stroke()
         }
@@ -80,6 +85,8 @@ class DrawRect: UIView, ColorChanging {
         bezierBuffer.last?.color = tool.color
         bezierBuffer.last!.color = bezierBuffer.last!.color.colorWithAlphaComponent(tool.transparent)
         bezierBuffer.last?.bezier.moveToPoint(tool.start)
+        bezierBuffer.last?.isFilling = tool.isFilling
+        bezierBuffer.last?.fillColor = tool.fillColor
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
