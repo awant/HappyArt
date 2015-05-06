@@ -15,6 +15,9 @@ protocol ColorChanging {
     func changeToolTransparentLevel(alpha: CGFloat)
 }
 
+let blackoutOfDrawView = CGFloat(0.5)
+let timeForBlackout = Double(0.4)
+
 class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewDataSource, ColorChanging, ImageOpening {
     
     @IBOutlet weak var drawRect: DrawRect!
@@ -114,6 +117,10 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.tool.setTitle(tools[row], forState: UIControlState.Normal)
         self.pickerView.hidden = true
         self.viewForPicker.hidden = true
+        UIView.animateWithDuration(timeForBlackout, animations: {()->Void in
+            self.drawRect.layer.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.0).CGColor
+            }, completion: nil)
+        drawRect.userInteractionEnabled = true
     }
     
     @IBAction func setColorViewBackColor(sender: UIButton) {
@@ -169,8 +176,11 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBAction func changeTool(sender: UIButton) {
         self.pickerView.hidden = false
         self.viewForPicker.hidden = false
+        drawRect.userInteractionEnabled = false
+        UIView.animateWithDuration(timeForBlackout, animations: {()->Void in
+            self.drawRect.layer.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(blackoutOfDrawView).CGColor
+        }, completion: nil)
     }
-    
     
     func setColorButtonWidth(action: Selector) -> CGFloat {
         return (self.colorView.frame.width - (self.hide.frame.width + 75))/numberOfColors
