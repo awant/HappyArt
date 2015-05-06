@@ -19,6 +19,7 @@ let maxTransparentLevel: CGFloat = 10.0
 
 class ColorView: UIView {
     var delegate: ColorChanging?
+    var transparent: UIStepper!
     
     func makeRainbowButtons(buttonFrame:CGRect, sat:CGFloat, bright:CGFloat, action: Selector) {
         var myButtonFrame = buttonFrame
@@ -42,11 +43,11 @@ class ColorView: UIView {
         aButton.addTarget(self, action: action, forControlEvents: UIControlEvents.TouchUpInside)
     }
     
-    func makeTransparentStepper(buttonFrame:CGRect, action: Selector) {
-        let transparent = UIStepper(frame: buttonFrame)
-        transparent.autorepeat = true
+    func makeTransparentStepper(buttonFrame: CGRect, action: Selector, value: Double) {
+        transparent = UIStepper(frame: buttonFrame)
+        //transparent.autorepeat = true
         transparent.maximumValue = Double(maxTransparentLevel)
-        transparent.value = transparent.maximumValue
+        transparent.value = value*transparent.maximumValue
         self.addSubview(transparent)
         if (action == setBackColorSelector) {
             transparent.addTarget(self, action: setBackTransparentLevelSelector, forControlEvents: UIControlEvents.ValueChanged)
@@ -58,21 +59,27 @@ class ColorView: UIView {
     
     func setBackColor(sender:UIButton) {
         let color = sender.backgroundColor!
+        
         delegate?.changeBackColor(color)
+        self.transparent.value = Double(maxTransparentLevel)
     }
     
     func setToolColor(sender:UIButton) {
         let color = sender.backgroundColor!
+        
         delegate?.changeToolColor(color)
+        self.transparent.value = Double(maxTransparentLevel)
     }
     
     func setBackTransparentLevel(sender:UIStepper) {
         let alpha = CGFloat(sender.value) / maxTransparentLevel
+        
         delegate?.changeBackTransparentLevel(alpha)
     }
     
     func setToolTransparentLevel(sender:UIStepper) {
         let alpha = CGFloat(sender.value) / maxTransparentLevel
+        
         delegate?.changeToolTransparentLevel(alpha)
     }
 }
