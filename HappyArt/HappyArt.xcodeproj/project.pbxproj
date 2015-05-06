@@ -93,6 +93,10 @@
 		84E16AC01AF5048E00DE5647 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84D72A421AFAD0D60076B0BB /* drawRect.swift */,
+				84F8A1FE1AF7EF62005C404F /* Background.swift */,
+				F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */,
+				F9CADCA71AF8F5EF008B1147 /* ImageSet.swift */,
 				84D40C781AF523BA007357B7 /* Tool.swift */,
 				84D40C801AF583CD007357B7 /* CustomBezier.swift */,
 			);
@@ -121,11 +125,7 @@
 		F936D3551AF2818A0034C998 /* HappyArt */ = {
 			isa = PBXGroup;
 			children = (
-				F9CADCA71AF8F5EF008B1147 /* ImageSet.swift */,
 				F936D35C1AF2818A0034C998 /* Main.storyboard */,
-				84F8A1FE1AF7EF62005C404F /* Background.swift */,
-				F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */,
-				84D72A421AFAD0D60076B0BB /* drawRect.swift */,
 				84E16ABF1AF5046F00DE5647 /* VCs */,
 				84E16AC01AF5048E00DE5647 /* Models */,
 				F936D35F1AF2818A0034C998 /* Images.xcassets */,
