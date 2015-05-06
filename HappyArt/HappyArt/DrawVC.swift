@@ -28,6 +28,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var hide: UIButton!
     @IBOutlet weak var backColor: UIButton!
     @IBOutlet weak var toolColor: UIButton!
+    @IBOutlet weak var viewForPicker: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     
     @IBOutlet weak var tool: UIButton!
@@ -40,6 +41,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         super.viewDidLoad()
         self.colorView.hidden = true
         self.pickerView.hidden = true
+        self.viewForPicker.hidden = true
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
@@ -104,6 +106,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         drawRect.tool.mainTool = tools[row]
         self.tool.setTitle(tools[row], forState: UIControlState.Normal)
         self.pickerView.hidden = true
+        self.viewForPicker.hidden = true
     }
     
     @IBAction func setColorViewBackColor(sender: UIButton) {
@@ -158,6 +161,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func changeTool(sender: UIButton) {
         self.pickerView.hidden = false
+        self.viewForPicker.hidden = false
     }
     
     
