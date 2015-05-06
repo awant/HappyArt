@@ -125,11 +125,13 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XjT-8s-t99">
                                                     <rect key="frame" x="1" y="1" width="98" height="98"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="XjT-8s-t99" secondAttribute="trailing" constant="1" id="Ale-Al-too"/>
                                             <constraint firstItem="XjT-8s-t99" firstAttribute="leading" secondItem="FZH-UA-2xD" secondAttribute="leading" constant="1" id="bzD-5l-61H"/>

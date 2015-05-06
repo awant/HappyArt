@@ -84,6 +84,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     
     func imageSaved(name: String) {
         self.navigationItem.title = name
+        openedImage.openedImageExists = true
+        openedImage.name = name
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {

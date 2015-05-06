@@ -36,6 +36,7 @@ class ImageSaveVC: UIViewController {
     
     @IBAction func saveImage(sender: UIButton) {
         let imageData = NSData(data: UIImagePNGRepresentation(delegate?.takeImage()))
+       
         if let newImageName = imageName.text {
             var newImagePath = documentsDirectory()//.stringByAppendingPathComponent("images")
             newImagePath = newImagePath.stringByAppendingPathComponent("\(newImageName).png")
@@ -47,3 +48,9 @@ class ImageSaveVC: UIViewController {
         self.navigationController?.popViewControllerAnimated(false)
     }
 }
+
+
+/*
+let fileManager = NSFileManager.defaultManager()
+var newImagePath = documentsDirectory()//.stringByAppendingPathComponent("images")
+fileManager.removeItemAtPath(newImagePath.stringByAppendingPathComponent("\(imageName.text).png"), error: nil) */

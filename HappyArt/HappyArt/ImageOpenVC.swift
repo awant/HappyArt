@@ -8,12 +8,23 @@
 
 import UIKit
 
-class ImageCell: UICollectionViewCell {
+class ImageCell: UICollectionViewCell, UIGestureRecognizerDelegate {
     @IBOutlet weak var imageView: UIImageView!
+    
+    var imagePath: String?
+    var delegate: ImageDeleting?
+    
+    func deleteImage() {
+        delegate?.deleteImage(imagePath!)
+    }
 }
 
 protocol ImageOpening {
     func openImage(image: UIImage, name: String)
+}
+
+protocol ImageDeleting {
+    func deleteImage(path: String)
 }
 
 struct OpenedImage {
@@ -22,13 +33,16 @@ struct OpenedImage {
     var name: String?
 }
 
-class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ImageDeleting {
     
     var imageSet = ImageSet()
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
 
     @IBOutlet weak var isEmpty: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidAppear(true)
     }
@@ -49,6 +63,14 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
         cell.imageView.image = self.imageSet.images.image[indexPath.row]
+        cell.imagePath = self.imageSet.images.path[indexPath.row]
+        cell.delegate = self
+        
+        let longPressRec = UILongPressGestureRecognizer()
+        longPressRec.addTarget(cell, action: "deleteImage")
+        cell.imageView.addGestureRecognizer(longPressRec)
+        cell.imageView.userInteractionEnabled = true
+        
         cell.backgroundColor = UIColor.blackColor()
         return cell
     }
@@ -74,6 +96,20 @@ class ImageOpenVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
         imageSet.clear()
+    }
+    
+    func deleteImage(path: String) {
+        let tapAlert = UIAlertController(title: "Delete \(path.lastPathComponent)?", message: "You won't be able to cancel this action!", preferredStyle: UIAlertControllerStyle.Alert)
+        tapAlert.addAction(UIAlertAction(title: "YES", style: .Destructive, handler: { action in
+            let fileManager = NSFileManager.defaultManager()
+            fileManager.removeItemAtPath(path, error: nil)
+            
+            self.imageSet.clear()
+            self.updateImageCollection()
+        }))
+        tapAlert.addAction(UIAlertAction(title: "NO", style: .Destructive, handler: nil))
+        self.presentViewController(tapAlert, animated: true, completion: nil)
+       
     }
     
 
