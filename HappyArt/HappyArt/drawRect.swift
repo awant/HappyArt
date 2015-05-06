@@ -14,7 +14,6 @@ let maxBeziersInLayer = 20
 import UIKit
 
 class DrawRect: UIView, ColorChanging {
-    
     var nBezier: Int
     
     var bezierBuffer: [CustomBezier] = []
