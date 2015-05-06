@@ -33,6 +33,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var toolColor: UIButton!
     @IBOutlet weak var viewForPicker: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var switcher: UISwitch!
     
     @IBOutlet weak var tool: UIButton!
     
@@ -58,6 +59,7 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         self.tool.setTitle("Brush", forState: UIControlState.Normal)
         currColor.layer.borderWidth = 1
         currColor.layer.borderColor = UIColor.blackColor().CGColor
+        switcher.on = false
         if (openedImage.openedImageExists == true) {
             openImage(openedImage.image!, name: openedImage.name!)
         }
@@ -153,7 +155,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
             i -= k
             buttonFrame.origin.y = buttonFrame.origin.y + buttonFrame.size.height
         }
-        buttonFrame = CGRect(x: self.currColor.frame.origin.x - 55, y: self.currColor.frame.origin.y + 23, width: 20, height: 20)
+        var locStepper = CGPoint(x: self.hide.frame.origin.x - 49, y: self.hide.frame.origin.y-35)
+        buttonFrame = CGRect(origin: locStepper, size: CGSize(width: 0,height: 0))
         self.colorView.makeTransparentStepper(buttonFrame, action: action)
     }
     
@@ -180,6 +183,12 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         UIView.animateWithDuration(timeForBlackout, animations: {()->Void in
             self.drawRect.layer.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(blackoutOfDrawView).CGColor
         }, completion: nil)
+    }
+    
+    
+    @IBAction func switcherChanged(sender: AnyObject)
+    {
+        
     }
     
     func setColorButtonWidth(action: Selector) -> CGFloat {
