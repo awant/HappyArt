@@ -51,6 +51,8 @@ class DrawVC: UIViewController, ImageSaving, UIPickerViewDelegate, UIPickerViewD
         viewForPicker.layer.cornerRadius = 10.0
         viewForPicker.layer.borderColor = UIColor.blackColor().CGColor
         viewForPicker.layer.borderWidth = 0.5
+        toolsView.layer.borderColor = UIColor.blackColor().colorWithAlphaComponent(0.8).CGColor
+        toolsView.layer.borderWidth = 0.8
         self.colorView.delegate = self.drawRect
         self.drawRect.delegate = self
         self.drawRect.backgroundDelegate = self.background
