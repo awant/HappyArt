@@ -62,6 +62,7 @@ class Tool {
         case "Rubber":
             pathCustom.color = UIColor.whiteColor()
             pathCustom.color = pathCustom.color.colorWithAlphaComponent(1.0)
+            pathCustom.isFilling = false
             path.addLineToPoint(end)
         case "Strong Sprayer":
             addStrongSprayer(path)
