@@ -16,21 +16,17 @@ let sizeOfSoftSprayer = CGFloat(2)
 let tools = ["Brush", "Line", "Rect", "Oval", "Rubber", "Strong Sprayer", "Soft Sprayer"]
 
 class Tool {
-    
     var mainTool: String
     var color: UIColor
     var fillColor: UIColor
     var isFilling: Bool
     var transparent: CGFloat
     var size: CGFloat
-    
     var start: CGPoint
     var end: CGPoint
-    
     var isDrawing: Bool
     
-    init()
-    {
+    init() {
         color = UIColor.blackColor()
         transparent = 1.0
         start = CGPoint(x: 0, y: 0)
@@ -43,9 +39,9 @@ class Tool {
         
     }
     
-    func changeLastBezier(pathCustom: CustomBezier)
-    {
+    func changeLastBezier(pathCustom: CustomBezier) {
         var path = pathCustom.bezier
+        
         switch mainTool {
         case "Brush":
             path.addLineToPoint(end)
@@ -73,42 +69,39 @@ class Tool {
         }
     }
     
-    func setPoint(pathCustom: CustomBezier)
-    {
+    func setPoint(pathCustom: CustomBezier) {
         var path = pathCustom.bezier
-        if (abs(end.x - start.x) < size) || (abs(end.y - start.y) < size)
-        {
+        
+        if (abs(end.x - start.x) < size) || (abs(end.y - start.y) < size) {
             end = CGPoint(x: start.x, y: start.y+size)
         }
         path.addLineToPoint(end)
     }
     
-    func addLine(path: UIBezierPath) -> UIBezierPath
-    {
+    func addLine(path: UIBezierPath) -> UIBezierPath {
         path.moveToPoint(start)
         path.addLineToPoint(end)
+        
         return path
     }
     
-    func addStrongSprayer(path: UIBezierPath)
-    {
-        var r: CGFloat = CGFloat(arc4random())
-        r = (r / CGFloat(UINT32_MAX))*size/2
-        var phi: CGFloat = CGFloat(arc4random())
-        phi = (phi / CGFloat(UINT32_MAX))*CGFloat(2*M_PI)
+    func addStrongSprayer(path: UIBezierPath) {
+        var r = CGFloat(arc4random())
+        var phi = CGFloat(arc4random())
         
+        r = (r / CGFloat(UINT32_MAX))*size/2
+        phi = (phi / CGFloat(UINT32_MAX))*CGFloat(2*M_PI)
         path.moveToPoint(CGPoint(x: end.x+r*cos(phi), y: end.y+r*sin(phi)))
         path.addLineToPoint(CGPoint(x: end.x+r*cos(phi)+sizeOfStrongSprayer, y: end.y+r*sin(phi)+sizeOfStrongSprayer))
     }
     
-    func addSoftSprayer(path: UIBezierPath)
-    {
-        path.lineWidth = sizeOfSoftSprayer
-        var r: CGFloat = CGFloat(arc4random())
-        r = (r / CGFloat(UINT32_MAX))*size*4
-        var phi: CGFloat = CGFloat(arc4random())
-        phi = (phi / CGFloat(UINT32_MAX))*CGFloat(2*M_PI)
+    func addSoftSprayer(path: UIBezierPath) {
+        var r = CGFloat(arc4random())
+        var phi = CGFloat(arc4random())
         
+        path.lineWidth = sizeOfSoftSprayer
+        r = (r / CGFloat(UINT32_MAX))*size*4
+        phi = (phi / CGFloat(UINT32_MAX))*CGFloat(2*M_PI)
         path.moveToPoint(CGPoint(x: end.x+r*cos(phi), y: end.y+r*sin(phi)))
         path.addLineToPoint(CGPoint(x: end.x+r*cos(phi)+sizeOfSoftSprayer, y: end.y+r*sin(phi)+sizeOfSoftSprayer))
     }

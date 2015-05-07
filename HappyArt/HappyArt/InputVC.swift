@@ -10,7 +10,6 @@ import UIKit
 
 
 class InputVC: UIViewController {
-    
     @IBOutlet weak var open: UIButton!
     @IBOutlet weak var new: UIButton!
     
@@ -23,12 +22,14 @@ class InputVC: UIViewController {
     }
 
     @IBAction func newPicture(sender: UIButton) {
-        let mainVC: DrawVC = self.storyboard?.instantiateViewControllerWithIdentifier("mainVC") as! DrawVC
+        let mainVC = self.storyboard?.instantiateViewControllerWithIdentifier("mainVC") as! DrawVC
+        
         self.navigationController?.pushViewController(mainVC, animated: true)
     }
     
     @IBAction func openPicture(sender: UIButton) {
-        let imageOpenVC: ImageOpenVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageOpenVC") as! ImageOpenVC
+        
+        let imageOpenVC = self.storyboard?.instantiateViewControllerWithIdentifier("imageOpenVC") as! ImageOpenVC
         self.navigationController?.pushViewController(imageOpenVC, animated: true)
     }
   

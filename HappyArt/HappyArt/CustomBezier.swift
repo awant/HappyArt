@@ -8,7 +8,7 @@
 
 import UIKit
 
-let defaultLineWidth: CGFloat = 3
+let defaultLineWidth = CGFloat(3)
 
 class CustomBezier {
     var bezier: UIBezierPath
@@ -16,8 +16,7 @@ class CustomBezier {
     var isFilling: Bool
     var fillColor: UIColor
     
-    init()
-    {
+    init() {
         color = UIColor.blackColor()
         bezier = UIBezierPath()
         bezier.lineWidth = defaultLineWidth

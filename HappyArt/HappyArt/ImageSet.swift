@@ -14,17 +14,18 @@ struct Images {
 }
 
 class ImageSet : NSObject {
-   
     var images = Images()
     
     func contentsOfDirectoryAtPath(path: String) -> [String]? {
         let fileManager = NSFileManager.defaultManager()
         let contents = fileManager.contentsOfDirectoryAtPath(path, error: nil)
+        
         return contents as! [String]?
     }
 
     func setImages() -> Void {
         let directory = documentsDirectory()
+        
         if let imageNames = contentsOfDirectoryAtPath(directory) {
             for i in 0..<imageNames.count {
                 let path = directory.stringByAppendingPathComponent(imageNames[i])

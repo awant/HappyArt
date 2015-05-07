@@ -7,16 +7,13 @@
 //
 //
 //
+import UIKit
 
 let maxBeziersForCancel = 10
 let maxBeziersInLayer = 20
 
-import UIKit
-
 class DrawRect: UIView, ColorChanging {
-    
     var nBezier: Int
-    
     var bezierBuffer: [CustomBezier] = []
     var tool: Tool
     var isFirstCall: Bool
@@ -24,26 +21,22 @@ class DrawRect: UIView, ColorChanging {
     var delegate: ColorChanging?
     var backgroundDelegate: BackgroundProtocol!
     
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder) {
         tool = Tool()
         isFirstCall = true
         nBezier = 0
         super.init(coder: aDecoder)
-        setupGestures()
+        self.setupGestures()
         self.backgroundColor = self.backgroundColor?.colorWithAlphaComponent(0.0)
     }
     
-    override func drawRect(rect: CGRect)
-    {
-        if (isFirstCall) {
-            isFirstCall = false
+    override func drawRect(rect: CGRect) {
+        if self.isFirstCall {
+            self.isFirstCall = false
             return
         }
-        for bezier in bezierBuffer
-        {
-            if bezier.isFilling
-            {
+        for bezier in bezierBuffer {
+            if bezier.isFilling {
                 bezier.fillColor.setFill()
                 bezier.bezier.fill()
             }
@@ -52,116 +45,104 @@ class DrawRect: UIView, ColorChanging {
         }
     }
     
-    func removeLast()
-    {
-        if bezierBuffer.count > 0
-        {
-            bezierBuffer.removeLast()
-            nBezier--;
+    func removeLast() {
+        if self.bezierBuffer.count > 0 {
+            self.bezierBuffer.removeLast()
+            self.nBezier--;
             self.setNeedsDisplay()
         }
     }
     
-    func removeAll()
-    {
-        bezierBuffer.removeAll()
-        backgroundDelegate?.removeAll()
-        nBezier = 0
+    func removeAll() {
+        self.bezierBuffer.removeAll()
+        self.backgroundDelegate?.removeAll()
+        self.nBezier = 0
         self.changeToolColor(UIColor.blackColor())
         self.setNeedsDisplay()
     }
     
-    func setupGestures()
-    {
+    func setupGestures() {
         var pan = UIPanGestureRecognizer(target: self, action: Selector("pan:"))
+        
         self.addGestureRecognizer(pan)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
-    {
-        tool.start = (touches.first as! UITouch).locationInView(self)
-        bezierBuffer.append(CustomBezier())
-        bezierBuffer.last?.bezier.lineWidth = tool.size
-        bezierBuffer.last?.color = tool.color
-        bezierBuffer.last!.color = bezierBuffer.last!.color.colorWithAlphaComponent(tool.transparent)
-        tool.fillColor = bezierBuffer.last!.color
-        bezierBuffer.last?.bezier.moveToPoint(tool.start)
-        bezierBuffer.last?.isFilling = tool.isFilling
-        bezierBuffer.last?.fillColor = tool.fillColor
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.tool.start = (touches.first as! UITouch).locationInView(self)
+        self.bezierBuffer.append(CustomBezier())
+        self.bezierBuffer.last?.bezier.lineWidth = tool.size
+        self.bezierBuffer.last?.color = tool.color
+        self.bezierBuffer.last!.color = bezierBuffer.last!.color.colorWithAlphaComponent(tool.transparent)
+        self.tool.fillColor = bezierBuffer.last!.color
+        self.bezierBuffer.last?.bezier.moveToPoint(tool.start)
+        self.bezierBuffer.last?.isFilling = tool.isFilling
+        self.bezierBuffer.last?.fillColor = tool.fillColor
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        tool.end = (touches.first as! UITouch).locationInView(self)
-        tool.setPoint(bezierBuffer.last!)
-        tool.isDrawing = false
+        self.tool.end = (touches.first as! UITouch).locationInView(self)
+        self.tool.setPoint(bezierBuffer.last!)
+        self.tool.isDrawing = false
         self.setNeedsDisplay()
-        nBezier++
-        if nBezier == maxBeziersInLayer
-        {
-            turnCurrentLayerIntoBackground()
-            nBezier -= maxBeziersInLayer-maxBeziersForCancel
+        self.nBezier++
+        if nBezier == maxBeziersInLayer {
+            self.turnCurrentLayerIntoBackground()
+            self.nBezier -= maxBeziersInLayer - maxBeziersForCancel
         }
     }
     
-    func pan(panGesture: UIPanGestureRecognizer)
-    {
+    func pan(panGesture: UIPanGestureRecognizer) {
         var pointInView = panGesture.locationInView(self)
-        if panGesture.state == UIGestureRecognizerState.Changed
-        {
+        
+        if panGesture.state == UIGestureRecognizerState.Changed {
             drawing(pointInView)
-        }
-        else if panGesture.state == UIGestureRecognizerState.Ended
-        {
-            tool.isDrawing = false
-            nBezier++
-            if nBezier == maxBeziersInLayer
-            {
-                turnCurrentLayerIntoBackground()
-                nBezier -= maxBeziersInLayer-maxBeziersForCancel
+        } else {
+            if panGesture.state == UIGestureRecognizerState.Ended {
+                tool.isDrawing = false
+                self.nBezier++
+                if self.nBezier == maxBeziersInLayer {
+                    self.turnCurrentLayerIntoBackground()
+                    self.nBezier -= maxBeziersInLayer - maxBeziersForCancel
+                }
             }
         }
     }
     
-    func drawing(pointInView: CGPoint)
-    {
+    func drawing(pointInView: CGPoint) {
         tool.end = pointInView
         tool.changeLastBezier(bezierBuffer.last!)
         tool.isDrawing = true
         self.setNeedsDisplay()
     }
     
-    func changeBackColor(color: UIColor)
-    {
-        backgroundDelegate?.changeBackColor(color)
-        delegate?.changeBackColor(color)
+    func changeBackColor(color: UIColor) {
+        self.backgroundDelegate?.changeBackColor(color)
+        self.delegate?.changeBackColor(color)
     }
     
-    func changeToolColor(color: UIColor)
-    {
-        tool.color = color
-        delegate?.changeToolColor(color)
+    func changeToolColor(color: UIColor) {
+        self.tool.color = color
+        self.delegate?.changeToolColor(color)
     }
     
     func changeBackTransparentLevel(alpha: CGFloat) {
-        delegate?.changeBackTransparentLevel(alpha)
+        self.delegate?.changeBackTransparentLevel(alpha)
     }
     
     func changeToolTransparentLevel(alpha: CGFloat) {
-        tool.transparent = alpha
-        delegate?.changeToolTransparentLevel(alpha)
+        self.tool.transparent = alpha
+        self.delegate?.changeToolTransparentLevel(alpha)
     }
     
-    func turnCurrentLayerIntoBackground()
-    {
-        backgroundDelegate?.drawBezierBuffer(Array(bezierBuffer[0...maxBeziersInLayer-maxBeziersForCancel-1]))
-        bezierBuffer.removeRange(0...maxBeziersInLayer-maxBeziersForCancel-1)
+    func turnCurrentLayerIntoBackground() {
+        self.backgroundDelegate?.drawBezierBuffer(Array(bezierBuffer[0...maxBeziersInLayer-maxBeziersForCancel-1]))
+        self.bezierBuffer.removeRange(0...maxBeziersInLayer-maxBeziersForCancel-1)
     }
     
-    func flushToBackground()
-    {
-        nBezier = 0
-        backgroundDelegate?.drawBezierBuffer(bezierBuffer)
-        bezierBuffer.removeAll()
+    func flushToBackground() {
+        self.nBezier = 0
+        self.backgroundDelegate?.drawBezierBuffer(bezierBuffer)
+        self.bezierBuffer.removeAll()
         self.changeToolColor(UIColor.blackColor())
         self.setNeedsDisplay()
     }

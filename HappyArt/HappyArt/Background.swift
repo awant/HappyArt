@@ -14,28 +14,22 @@ protocol BackgroundProtocol {
     func removeAll()
 }
 
-class Background: UIView, BackgroundProtocol, ImageOpening {
-    
+class Background: UIView {
     var bezierBuffer: [CustomBezier] = []
     var isFirstCall: Bool
     
-    required init(coder aDecoder: NSCoder)
-    {
-        isFirstCall = true
+    required init(coder aDecoder: NSCoder) {
+        self.isFirstCall = true
         super.init(coder: aDecoder)
     }
     
-    override func drawRect(rect: CGRect)
-    {
-        if (isFirstCall)
-        {
-            isFirstCall = false
+    override func drawRect(rect: CGRect) {
+        if self.isFirstCall {
+            self.isFirstCall = false
             return
         }
-        for bezier in bezierBuffer
-        {
-            if bezier.isFilling
-            {
+        for bezier in self.bezierBuffer {
+            if bezier.isFilling {
                 bezier.fillColor.setFill()
                 bezier.bezier.fill()
             }
@@ -43,30 +37,28 @@ class Background: UIView, BackgroundProtocol, ImageOpening {
             bezier.bezier.stroke()
         }
     }
+}
+
+extension Background: BackgroundProtocol {
+    func changeBackColor(color: UIColor) {
+        self.backgroundColor = color
+    }
     
-    func drawBezierBuffer(bezierBuffer: [CustomBezier])
-    {
+    func drawBezierBuffer(bezierBuffer: [CustomBezier]) {
         self.bezierBuffer += bezierBuffer
         self.setNeedsDisplay()
     }
     
-    func changeBackColor(color: UIColor)
-    {
-        self.backgroundColor = color
-    }
-    
-    func removeAll()
-    {
-        bezierBuffer.removeAll()
+    func removeAll() {
+        self.bezierBuffer.removeAll()
         self.changeBackColor(UIColor.whiteColor())
         self.setNeedsDisplay()
     }
-    
+}
+
+extension Background: ImageOpening {
     func openImage(image: UIImage, name: String) {
         self.backgroundColor = UIColor(patternImage: image)
     }
-    
 }
-
-
 

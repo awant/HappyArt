@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		84D40C791AF523BA007357B7 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D40C781AF523BA007357B7 /* Tool.swift */; };
 		84D40C811AF583CD007357B7 /* CustomBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D40C801AF583CD007357B7 /* CustomBezier.swift */; };
-		84D72A431AFAD0D60076B0BB /* drawRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D72A421AFAD0D60076B0BB /* drawRect.swift */; };
-		84D72A491AFAF11E0076B0BB /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84D72A481AFAF11E0076B0BB /* 1.jpg */; };
 		84F8A1FF1AF7EF62005C404F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F8A1FE1AF7EF62005C404F /* Background.swift */; };
 		F936D3591AF2818A0034C998 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936D3581AF2818A0034C998 /* AppDelegate.swift */; };
 		F936D35B1AF2818A0034C998 /* DrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936D35A1AF2818A0034C998 /* DrawVC.swift */; };
@@ -19,6 +17,8 @@
 		F936D3631AF2818A0034C998 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F936D3611AF2818A0034C998 /* LaunchScreen.xib */; };
 		F936D36F1AF2818A0034C998 /* HappyArtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936D36E1AF2818A0034C998 /* HappyArtTests.swift */; };
 		F9BE9B1E1AFACD45007A4692 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9BE9B1C1AFACD45007A4692 /* Localizable.strings */; };
+		F9BE9B271AFAF905007A4692 /* ErrorAllert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE9B261AFAF905007A4692 /* ErrorAllert.swift */; };
+		F9BE9B351AFB2873007A4692 /* drawRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BE9B341AFB2873007A4692 /* drawRect.swift */; };
 		F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */; };
 		F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */; };
 		F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */; };
@@ -39,8 +39,6 @@
 /* Begin PBXFileReference section */
 		84D40C781AF523BA007357B7 /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		84D40C801AF583CD007357B7 /* CustomBezier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBezier.swift; sourceTree = "<group>"; };
-		84D72A421AFAD0D60076B0BB /* drawRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawRect.swift; sourceTree = "<group>"; };
-		84D72A481AFAF11E0076B0BB /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		84F8A1FE1AF7EF62005C404F /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		F936D3531AF2818A0034C998 /* HappyArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F936D3571AF2818A0034C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,10 +50,12 @@
 		F936D3681AF2818A0034C998 /* HappyArtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HappyArtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F936D36D1AF2818A0034C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F936D36E1AF2818A0034C998 /* HappyArtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyArtTests.swift; sourceTree = "<group>"; };
-		F9BE9B1A1AFACD06007A4692 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		F9BE9B1B1AFACD06007A4692 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		F9BE9B1D1AFACD45007A4692 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = HappyArt/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9BE9B1F1AFACD74007A4692 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = HappyArt/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F9BE9B261AFAF905007A4692 /* ErrorAllert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorAllert.swift; sourceTree = "<group>"; };
+		F9BE9B2C1AFB0C09007A4692 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		F9BE9B2D1AFB0C09007A4692 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F9BE9B311AFB0D08007A4692 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = HappyArt/ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F9BE9B341AFB2873007A4692 /* drawRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawRect.swift; sourceTree = "<group>"; };
 		F9C48ECA1AF2BC4000CAAF68 /* InputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputVC.swift; sourceTree = "<group>"; };
 		F9C48ECC1AF2C92400CAAF68 /* ImageOpenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageOpenVC.swift; sourceTree = "<group>"; };
 		F9C48ECE1AF2CF9600CAAF68 /* ImageSaveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaveVC.swift; sourceTree = "<group>"; };
@@ -95,12 +95,13 @@
 		84E16AC01AF5048E00DE5647 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				84D72A421AFAD0D60076B0BB /* drawRect.swift */,
+				F9BE9B261AFAF905007A4692 /* ErrorAllert.swift */,
 				84F8A1FE1AF7EF62005C404F /* Background.swift */,
 				F9DC8E701AF6EDEF00028616 /* ColorPicker.swift */,
 				F9CADCA71AF8F5EF008B1147 /* ImageSet.swift */,
 				84D40C781AF523BA007357B7 /* Tool.swift */,
 				84D40C801AF583CD007357B7 /* CustomBezier.swift */,
+				F9BE9B341AFB2873007A4692 /* drawRect.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -127,7 +128,6 @@
 		F936D3551AF2818A0034C998 /* HappyArt */ = {
 			isa = PBXGroup;
 			children = (
-				84D72A481AFAF11E0076B0BB /* 1.jpg */,
 				F936D35C1AF2818A0034C998 /* Main.storyboard */,
 				84E16ABF1AF5046F00DE5647 /* VCs */,
 				84E16AC01AF5048E00DE5647 /* Models */,
@@ -246,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F936D35E1AF2818A0034C998 /* Main.storyboard in Resources */,
-				84D72A491AFAF11E0076B0BB /* 1.jpg in Resources */,
 				F9BE9B1E1AFACD45007A4692 /* Localizable.strings in Resources */,
 				F936D3631AF2818A0034C998 /* LaunchScreen.xib in Resources */,
 				F936D3601AF2818A0034C998 /* Images.xcassets in Resources */,
@@ -269,13 +268,14 @@
 			files = (
 				84D40C811AF583CD007357B7 /* CustomBezier.swift in Sources */,
 				F936D35B1AF2818A0034C998 /* DrawVC.swift in Sources */,
+				F9BE9B271AFAF905007A4692 /* ErrorAllert.swift in Sources */,
 				F9C48ECF1AF2CF9600CAAF68 /* ImageSaveVC.swift in Sources */,
 				F936D3591AF2818A0034C998 /* AppDelegate.swift in Sources */,
 				84D40C791AF523BA007357B7 /* Tool.swift in Sources */,
 				F9DC8E711AF6EDEF00028616 /* ColorPicker.swift in Sources */,
 				F9C48ECD1AF2C92400CAAF68 /* ImageOpenVC.swift in Sources */,
-				84D72A431AFAD0D60076B0BB /* drawRect.swift in Sources */,
 				F9C48ECB1AF2BC4000CAAF68 /* InputVC.swift in Sources */,
+				F9BE9B351AFB2873007A4692 /* drawRect.swift in Sources */,
 				F9CADCA81AF8F5EF008B1147 /* ImageSet.swift in Sources */,
 				84F8A1FF1AF7EF62005C404F /* Background.swift in Sources */,
 			);
@@ -304,7 +304,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F936D35D1AF2818A0034C998 /* Base */,
-				F9BE9B1A1AFACD06007A4692 /* ru */,
+				F9BE9B2C1AFB0C09007A4692 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				F936D3621AF2818A0034C998 /* Base */,
-				F9BE9B1B1AFACD06007A4692 /* ru */,
+				F9BE9B2D1AFB0C09007A4692 /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -321,8 +321,8 @@
 		F9BE9B1C1AFACD45007A4692 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F9BE9B1D1AFACD45007A4692 /* ru */,
 				F9BE9B1F1AFACD74007A4692 /* Base */,
+				F9BE9B311AFB0D08007A4692 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
