@@ -8,7 +8,7 @@
 "97Z-bO-Cw6.text" = "Нет картинок";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "BI4-xN-bDS"; */
-"BI4-xN-bDS.text" = "Имя";
+"BI4-xN-bDS.text" = "Имя/Пост";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "ECk-pJ-Nhm"; */
 "ECk-pJ-Nhm.normalTitle" = "Отмена";
