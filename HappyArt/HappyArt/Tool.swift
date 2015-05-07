@@ -13,7 +13,7 @@ let minSizeForBrush = CGFloat(0.1)
 let sizeOfStrongSprayer = CGFloat(0.2)
 let sizeOfSoftSprayer = CGFloat(2)
 
-let tools = ["Brush", "Line", "Rect", "Oval", "Strong Sprayer", "Soft Sprayer"]
+let tools = ["Brush", "Line", "Rect", "Oval", "Rubber", "Strong Sprayer", "Soft Sprayer"]
 
 class Tool {
     
